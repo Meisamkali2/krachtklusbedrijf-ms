@@ -2,11 +2,17 @@ import Header from "./components/Header";
 import Services from "./components/Services";
 import Projecten from "./components/Projecten";
 import BeforeAfter from "./components/BeforeAfter";
-import WhatsappButton from "./components/WhatsappButton";
+import FloatingButtons from "./components/FloatingButtons";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import Testimonials from "./components/Testimonials";
 import BeforeAfterSlider from "./components/BeforeAfterSlider";
+import Stats from "./components/Stats";
+import About from "./components/About";
+import WhyChooseUs from "./components/WhyChooseUs";
+import ServiceArea from "./components/ServiceArea";
+import GoogleReviews from "./components/GoogleReviews";
+import CallToAction from "./components/CallToAction";
 export default function Home() {
   return (
     <>
@@ -27,7 +33,7 @@ export default function Home() {
           {/* متن */}
           <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center text-white">
             <h1 className="text-5xl md:text-7xl font-bold">
-              Kracht Klusbedrijf MS
+              M.S. Kracht Klusbedrijf
             </h1>
 
             <p className="mt-6 max-w-2xl text-lg md:text-2xl">
@@ -46,12 +52,18 @@ export default function Home() {
             </div>
           </div>
         </section>
+        <Stats />
+        <About />
+        <WhyChooseUs />
         <Services />
         <Projecten />
         <BeforeAfterSlider />
+        <GoogleReviews />
         <Testimonials />
+        <ServiceArea />
+        <CallToAction />
         <Contact />
-        <WhatsappButton />
+        <FloatingButtons />
         <Footer />
       </main>
     </>
