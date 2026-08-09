@@ -6,9 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-
     sitemap: "https://www.krachtklusbedrijf-ms.nl/sitemap.xml",
-
     host: "https://www.krachtklusbedrijf-ms.nl",
   };
 }
