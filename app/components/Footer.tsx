@@ -77,7 +77,7 @@ export default function Footer() {
 
                 <Phone size={18} />
 
-                <span>+31 6 12345678</span>
+                <span>+31 6 43680281</span>
 
               </div>
 
