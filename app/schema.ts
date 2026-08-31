@@ -8,9 +8,9 @@ const schema = {
 
   url: "https://www.krachtklusbedrijf-ms.nl",
 
-  image: "https://www.krachtklusbedrijf-ms.nl/hero.jpg",
+  image: "https://www.krachtklusbedrijf-ms.nl/images/ms-kracht-logo.png",
 
-  logo: "https://www.krachtklusbedrijf-ms.nl/favicon.ico",
+  logo: "https://www.krachtklusbedrijf-ms.nl/images/ms-kracht-logo.png",
 
   telephone: "+31643680281",
 
