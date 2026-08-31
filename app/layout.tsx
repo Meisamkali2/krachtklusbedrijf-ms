@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import schema from "./schema";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,29 +17,26 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.krachtklusbedrijf-ms.nl"),
 
   title: {
-    default: "M.S. Kracht Klusbedrijf | Renovatie & Schilderwerk in Elst",
+    default: "M.S. Kracht Klusbedrijf | Klusbedrijf in Elst",
     template: "%s | M.S. Kracht Klusbedrijf",
   },
 
   description:
-    "Professioneel klusbedrijf in Elst, Arnhem en Nijmegen. Specialist in renovatie, schilderwerk, vloeren, badkamers, isolatie en complete verbouwingen.",
+    "M.S. Kracht Klusbedrijf is gespecialiseerd in renovatie, schilderwerk, vloeren, badkamer renovatie, isolatie en complete verbouwingen in Elst, Arnhem, Nijmegen en omgeving.",
 
   keywords: [
     "klusbedrijf Elst",
-    "schilder Elst",
-    "renovatie Elst",
     "klusbedrijf Arnhem",
     "klusbedrijf Nijmegen",
-    "badkamer renovatie",
-    "vloeren",
-    "isolatie",
-    "schilderwerk",
+    "renovatie Elst",
+    "schilderwerk Elst",
+    "badkamer renovatie Elst",
+    "vloeren Elst",
+    "isolatie Elst",
   ],
 
   authors: [{ name: "M.S. Kracht Klusbedrijf" }],
-
   creator: "M.S. Kracht Klusbedrijf",
-
   publisher: "M.S. Kracht Klusbedrijf",
 
   alternates: {
@@ -47,35 +45,27 @@ export const metadata: Metadata = {
 
   openGraph: {
     title: "M.S. Kracht Klusbedrijf",
-
     description:
-      "Professioneel renovatiebedrijf in Elst, Arnhem en Nijmegen.",
-
+      "Klusbedrijf voor renovatie, schilderwerk, vloeren, badkamers, isolatie en verbouwingen in Elst, Arnhem en Nijmegen.",
     url: "https://www.krachtklusbedrijf-ms.nl",
-
     siteName: "M.S. Kracht Klusbedrijf",
-
     locale: "nl_NL",
-
     type: "website",
-
     images: [
       {
         url: "/hero.jpg",
         width: 1200,
         height: 630,
+        alt: "M.S. Kracht Klusbedrijf",
       },
     ],
   },
 
   twitter: {
     card: "summary_large_image",
-
     title: "M.S. Kracht Klusbedrijf",
-
     description:
-      "Professioneel renovatiebedrijf in Gelderland.",
-
+      "Klusbedrijf voor renovatie en verbouwing in Gelderland.",
     images: ["/hero.jpg"],
   },
 
@@ -97,60 +87,20 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const localBusinessSchema = {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-
-    name: "M.S. Kracht Klusbedrijf",
-
-    image: "https://www.krachtklusbedrijf-ms.nl/hero.jpg",
-
-    url: "https://www.krachtklusbedrijf-ms.nl",
-
-    telephone: "",
-
-    address: {
-      "@type": "PostalAddress",
-
-      streetAddress: "Koningin Wilhelminastraat 73",
-
-      postalCode: "6661 VW",
-
-      addressLocality: "Elst",
-
-      addressRegion: "Gelderland",
-
-      addressCountry: "NL",
-    },
-
-    areaServed: [
-      "Elst",
-      "Arnhem",
-      "Nijmegen",
-      "Gelderland",
-    ],
-
-    priceRange: "€€",
-
-    openingHours: "Mo-Fr 08:00-18:00",
-  };
-
   return (
     <html
       lang="nl"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
-
+      <body className="flex min-h-full flex-col">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(localBusinessSchema),
+            __html: JSON.stringify(schema),
           }}
         />
 
         {children}
-
       </body>
     </html>
   );
