@@ -53,10 +53,10 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/hero.jpg",
-        width: 1200,
-        height: 630,
-        alt: "M.S. Kracht Klusbedrijf",
+        url: "/images/og-image.jpg",
+        width: 1536,
+        height: 1024,
+        alt: "M.S. Kracht Klusbedrijf - renovatie en verbouwing",
       },
     ],
   },
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
     title: "M.S. Kracht Klusbedrijf",
     description:
       "Klusbedrijf voor renovatie en verbouwing in Gelderland.",
-    images: ["/hero.jpg"],
+    images: ["/images/og-image.jpg"],
   },
 
   robots: {
