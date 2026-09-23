@@ -328,12 +328,28 @@ export default function NijmegenPage() {
             andere werkzaamheden van M.S. Kracht Klusbedrijf.
           </p>
 
-          <Link
-            href="/projecten"
-            className="mt-8 inline-block rounded-xl bg-blue-600 px-7 py-4 font-semibold transition hover:bg-blue-700"
-          >
-            Bekijk alle projecten
-          </Link>
+          <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
+            <Link
+              href="/projecten"
+              className="rounded-xl bg-blue-600 px-7 py-4 text-center font-semibold transition hover:bg-blue-700"
+            >
+              Bekijk alle projecten
+            </Link>
+
+            <Link
+              href="/projecten/stucwerk-schilderwerk"
+              className="rounded-xl border border-white px-7 py-4 text-center font-semibold transition hover:bg-white hover:text-slate-950"
+            >
+              Stucwerk & schilderwerk →
+            </Link>
+
+            <Link
+              href="/projecten/tegelwerk"
+              className="rounded-xl border border-white px-7 py-4 text-center font-semibold transition hover:bg-white hover:text-slate-950"
+            >
+              Tegelwerk →
+            </Link>
+          </div>
         </div>
       </section>
 
