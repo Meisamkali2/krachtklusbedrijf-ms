@@ -1,14 +1,14 @@
+import Link from "next/link";
 import { MapPin, Building2 } from "lucide-react";
 
 const cities = [
-  "Elst",
-  "Arnhem",
-  "Nijmegen",
-  "Bemmel",
-  "Huissen",
-  "Lent",
-  "Oosterbeek",
-  "Gelderland",
+  { name: "Elst", href: "/elst" },
+  { name: "Arnhem", href: "/arnhem" },
+  { name: "Nijmegen", href: "/nijmegen" },
+  { name: "Bemmel", href: "/bemmel" },
+  { name: "Huissen", href: "/huissen" },
+  { name: "Lent", href: "/lent" },
+  { name: "Oosterbeek", href: "/oosterbeek" },
 ];
 
 export default function ServiceArea() {
@@ -24,23 +24,29 @@ export default function ServiceArea() {
             Ons werkgebied in Gelderland
           </h2>
 
-          <p className="mx-auto mt-6 max-w-3xl text-lg text-gray-600">
+          <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-gray-600">
             M.S. Kracht Klusbedrijf is actief in Elst, Arnhem, Nijmegen
-            en omliggende plaatsen. Staat uw woonplaats er niet tussen?
-            Neem gerust contact met ons op.
+            en omliggende plaatsen. Bekijk onze lokale pagina's voor meer
+            informatie over onze werkzaamheden per plaats.
           </p>
         </div>
 
         <div className="mt-16 grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {cities.map((city) => (
-            <div
-              key={city}
-              className="flex items-center gap-3 rounded-2xl border border-gray-200 bg-gray-50 p-5 transition hover:border-blue-500 hover:bg-blue-50"
+            <Link
+              key={city.href}
+              href={city.href}
+              className="group flex items-center gap-3 rounded-2xl border border-gray-200 bg-gray-50 p-5 transition hover:-translate-y-1 hover:border-blue-500 hover:bg-blue-50 hover:shadow-md"
             >
-              <MapPin className="text-blue-600" size={22} />
+              <MapPin
+                className="text-blue-600 transition group-hover:scale-110"
+                size={22}
+              />
 
-              <span className="font-semibold">{city}</span>
-            </div>
+              <span className="font-semibold text-slate-800 group-hover:text-blue-700">
+                Klusbedrijf in {city.name}
+              </span>
+            </Link>
           ))}
         </div>
 
@@ -51,11 +57,18 @@ export default function ServiceArea() {
             Staat uw plaats er niet tussen?
           </h3>
 
-          <p className="mx-auto mt-6 max-w-3xl text-blue-100">
+          <p className="mx-auto mt-6 max-w-3xl leading-8 text-blue-100">
             Geen probleem. Neem vrijblijvend contact met ons op.
             We bespreken graag uw project en bekijken samen wat er
             mogelijk is.
           </p>
+
+          <Link
+            href="#contact"
+            className="mt-8 inline-block rounded-xl bg-white px-8 py-4 font-semibold text-blue-900 transition hover:scale-105 hover:bg-blue-50"
+          >
+            Neem contact op
+          </Link>
         </div>
       </div>
     </section>
