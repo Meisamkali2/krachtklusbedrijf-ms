@@ -89,10 +89,12 @@ export default function ArnhemPage() {
               <h3 className="text-xl font-bold text-slate-900">
                 Renovatie & verbouwing
               </h3>
+
               <p className="mt-3 leading-7 text-slate-600">
                 Renovatie- en verbouwingswerkzaamheden waarbij verschillende
                 onderdelen van een woning worden aangepakt.
               </p>
+
               <Link
                 href="/renovatie"
                 className="mt-5 inline-block font-semibold text-blue-700 hover:text-blue-900"
@@ -105,10 +107,12 @@ export default function ArnhemPage() {
               <h3 className="text-xl font-bold text-slate-900">
                 Schilderwerk
               </h3>
+
               <p className="mt-3 leading-7 text-slate-600">
                 Binnen- en buitenschilderwerk voor het vernieuwen en netjes
                 afwerken van verschillende ruimtes en oppervlakken.
               </p>
+
               <Link
                 href="/schilderwerk"
                 className="mt-5 inline-block font-semibold text-blue-700 hover:text-blue-900"
@@ -121,10 +125,12 @@ export default function ArnhemPage() {
               <h3 className="text-xl font-bold text-slate-900">
                 Badkamerrenovatie
               </h3>
+
               <p className="mt-3 leading-7 text-slate-600">
                 Een bestaande badkamer vernieuwen en de ruimte praktisch en
                 verzorgd laten afwerken.
               </p>
+
               <Link
                 href="/badkamer-renovatie"
                 className="mt-5 inline-block font-semibold text-blue-700 hover:text-blue-900"
@@ -137,10 +143,12 @@ export default function ArnhemPage() {
               <h3 className="text-xl font-bold text-slate-900">
                 Vloeren leggen
               </h3>
+
               <p className="mt-3 leading-7 text-slate-600">
                 Het plaatsen van verschillende vloerafwerkingen, waaronder
                 laminaat en andere vloeren.
               </p>
+
               <Link
                 href="/vloeren"
                 className="mt-5 inline-block font-semibold text-blue-700 hover:text-blue-900"
@@ -153,10 +161,12 @@ export default function ArnhemPage() {
               <h3 className="text-xl font-bold text-slate-900">
                 Zolderrenovatie
               </h3>
+
               <p className="mt-3 leading-7 text-slate-600">
                 Een zolder renoveren en de beschikbare ruimte praktischer en
                 comfortabeler maken.
               </p>
+
               <Link
                 href="/zolder-renovatie"
                 className="mt-5 inline-block font-semibold text-blue-700 hover:text-blue-900"
@@ -169,10 +179,12 @@ export default function ArnhemPage() {
               <h3 className="text-xl font-bold text-slate-900">
                 Isolatie
               </h3>
+
               <p className="mt-3 leading-7 text-slate-600">
                 Isolatiewerkzaamheden die kunnen bijdragen aan een comfortabel
                 en energiezuiniger huis.
               </p>
+
               <Link
                 href="/isolatie"
                 className="mt-5 inline-block font-semibold text-blue-700 hover:text-blue-900"
@@ -196,6 +208,7 @@ export default function ArnhemPage() {
               <h3 className="text-xl font-bold text-slate-900">
                 Persoonlijke aanpak
               </h3>
+
               <p className="mt-3 leading-7 text-slate-600">
                 We bespreken vooraf welke werkzaamheden nodig zijn en houden
                 rekening met uw wensen en de situatie van de woning.
@@ -206,6 +219,7 @@ export default function ArnhemPage() {
               <h3 className="text-xl font-bold text-slate-900">
                 Zorgvuldige uitvoering
               </h3>
+
               <p className="mt-3 leading-7 text-slate-600">
                 We werken netjes en besteden aandacht aan een verzorgde
                 afwerking van het project.
@@ -216,6 +230,7 @@ export default function ArnhemPage() {
               <h3 className="text-xl font-bold text-slate-900">
                 Meerdere werkzaamheden
               </h3>
+
               <p className="mt-3 leading-7 text-slate-600">
                 Renovatie, schilderwerk, vloeren, badkamers, isolatie en
                 zolderrenovatie kunnen onderdeel zijn van één project.
@@ -226,6 +241,7 @@ export default function ArnhemPage() {
               <h3 className="text-xl font-bold text-slate-900">
                 Actief in Arnhem
               </h3>
+
               <p className="mt-3 leading-7 text-slate-600">
                 Vanuit Elst zijn wij actief in Arnhem en verschillende
                 omliggende plaatsen.
@@ -247,12 +263,28 @@ export default function ArnhemPage() {
             werkzaamheden die door M.S. Kracht Klusbedrijf zijn uitgevoerd.
           </p>
 
-          <Link
-            href="/projecten"
-            className="mt-8 inline-block rounded-xl bg-blue-600 px-7 py-4 font-semibold transition hover:bg-blue-700"
-          >
-            Bekijk alle projecten
-          </Link>
+          <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
+            <Link
+              href="/projecten"
+              className="rounded-xl bg-blue-600 px-7 py-4 text-center font-semibold transition hover:bg-blue-700"
+            >
+              Bekijk alle projecten
+            </Link>
+
+            <Link
+              href="/projecten/stucwerk-schilderwerk"
+              className="rounded-xl border border-white px-7 py-4 text-center font-semibold transition hover:bg-white hover:text-slate-950"
+            >
+              Stucwerk & schilderwerk →
+            </Link>
+
+            <Link
+              href="/projecten/tegelwerk"
+              className="rounded-xl border border-white px-7 py-4 text-center font-semibold transition hover:bg-white hover:text-slate-950"
+            >
+              Tegelwerk →
+            </Link>
+          </div>
         </div>
       </section>
 
