@@ -41,6 +41,13 @@ export default async function ProjectPage({ params }: Props) {
 
   const isGalleryProject = "gallery" in project;
 
+  const projectIntro =
+    project.slug === "stucwerk-schilderwerk"
+      ? "Bij dit project zijn stucwerk en binnenschilderwerk gecombineerd voor een strakke wand- en plafondafwerking. De foto's laten verschillende fases en resultaten van het uitgevoerde werk zien, waaronder het voorbereiden, glad afwerken en schilderen van de oppervlakken."
+      : project.slug === "tegelwerk"
+        ? "Dit project laat uitgevoerd tegelwerk zien met aandacht voor een nette plaatsing en een verzorgde afwerking. De foto's geven een beeld van het uitgevoerde werk en de verschillende onderdelen van het tegelproject."
+        : "Voor dit project heeft M.S. Kracht Klusbedrijf de werkzaamheden zorgvuldig uitgevoerd met aandacht voor detail, kwaliteit en een nette afwerking.";
+
   return (
     <main className="bg-slate-50">
       {/* HERO */}
@@ -117,7 +124,7 @@ export default async function ProjectPage({ params }: Props) {
           <div className="mx-auto max-w-7xl px-6">
             <div className="mx-auto max-w-4xl text-center">
               <span className="rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-700">
-                PROJECTFOTO'S
+                PROJECTFOTO&apos;S
               </span>
 
               <h2 className="mt-6 text-4xl font-black text-slate-900 md:text-5xl">
@@ -125,7 +132,7 @@ export default async function ProjectPage({ params }: Props) {
               </h2>
 
               <p className="mt-6 text-lg leading-9 text-slate-600">
-                Bekijk de foto's van dit project en ontdek het vakmanschap
+                Bekijk de foto&apos;s van dit project en ontdek het vakmanschap
                 van M.S. Kracht Klusbedrijf.
               </p>
             </div>
@@ -259,11 +266,11 @@ export default async function ProjectPage({ params }: Props) {
             {isGalleryProject && (
               <div className="rounded-3xl bg-slate-50 p-8 text-center">
                 <h3 className="text-lg font-semibold text-slate-500">
-                  Foto's
+                  Foto&apos;s
                 </h3>
 
                 <p className="mt-3 text-2xl font-bold text-blue-700">
-                  {project.gallery?.length ?? 0} foto's
+                  {project.gallery?.length ?? 0} foto&apos;s
                 </p>
               </div>
             )}
@@ -279,26 +286,62 @@ export default async function ProjectPage({ params }: Props) {
           </span>
 
           <h2 className="mt-6 text-5xl font-black text-slate-900">
-            Vakmanschap van begin tot eind
+            {project.slug === "stucwerk-schilderwerk"
+              ? "Stucwerk en schilderwerk met een strakke afwerking"
+              : project.slug === "tegelwerk"
+                ? "Tegelwerk met aandacht voor een nette afwerking"
+                : "Vakmanschap van begin tot eind"}
           </h2>
 
           <div className="mt-10 space-y-8 text-lg leading-9 text-slate-700">
-            <p>
-              Voor dit project heeft M.S. Kracht Klusbedrijf de werkzaamheden
-              zorgvuldig uitgevoerd met aandacht voor detail, kwaliteit en een
-              nette afwerking.
-            </p>
+            <p>{projectIntro}</p>
 
-            <p>
-              We werken met aandacht voor de bestaande situatie en stemmen de
-              werkzaamheden af op de wensen van de klant.
-            </p>
+            {project.slug === "stucwerk-schilderwerk" && (
+              <>
+                <p>
+                  Het project omvat onder andere stucwerk, wandafwerking,
+                  plafondafwerking en binnenschilderwerk. Voor het schilderwerk
+                  is gewerkt met zowel verfspuit als roller, afhankelijk van de
+                  betreffende afwerking.
+                </p>
 
-            <p>
-              Van stucwerk en schilderwerk tot tegelwerk en andere
-              renovatiewerkzaamheden: ieder project wordt zorgvuldig uitgevoerd
-              met oog voor het eindresultaat.
-            </p>
+                <p>
+                  Wilt u meer weten over onze werkzaamheden op het gebied van
+                  schilderwerk? Bekijk dan ook onze pagina over{" "}
+                  <Link
+                    href="/schilderwerk"
+                    className="font-semibold text-blue-700 underline underline-offset-4 hover:text-blue-900"
+                  >
+                    schilderwerk
+                  </Link>
+                  .
+                </p>
+              </>
+            )}
+
+            {project.slug === "tegelwerk" && (
+              <p>
+                Bij tegelwerk is een zorgvuldige voorbereiding en nette
+                uitvoering belangrijk voor het uiteindelijke resultaat. De
+                projectfoto&apos;s geven een beeld van het tegelwerk dat door
+                M.S. Kracht Klusbedrijf is uitgevoerd.
+              </p>
+            )}
+
+            {!isGalleryProject && (
+              <>
+                <p>
+                  We werken met aandacht voor de bestaande situatie en stemmen
+                  de werkzaamheden af op de wensen van de klant.
+                </p>
+
+                <p>
+                  Van stucwerk en schilderwerk tot tegelwerk en andere
+                  renovatiewerkzaamheden: ieder project wordt zorgvuldig
+                  uitgevoerd met oog voor het eindresultaat.
+                </p>
+              </>
+            )}
           </div>
         </div>
       </section>
@@ -344,9 +387,7 @@ export default async function ProjectPage({ params }: Props) {
 
           <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
             <div className="rounded-3xl bg-white p-8 shadow">
-              <h3 className="text-xl font-bold">
-                Ervaring
-              </h3>
+              <h3 className="text-xl font-bold">Ervaring</h3>
 
               <p className="mt-4 leading-8 text-slate-600">
                 Ervaren vakmensen met aandacht voor kwaliteit en detail.
@@ -354,9 +395,7 @@ export default async function ProjectPage({ params }: Props) {
             </div>
 
             <div className="rounded-3xl bg-white p-8 shadow">
-              <h3 className="text-xl font-bold">
-                Kwaliteit
-              </h3>
+              <h3 className="text-xl font-bold">Kwaliteit</h3>
 
               <p className="mt-4 leading-8 text-slate-600">
                 Wij werken met hoogwaardige materialen en zorgen voor een
@@ -365,9 +404,7 @@ export default async function ProjectPage({ params }: Props) {
             </div>
 
             <div className="rounded-3xl bg-white p-8 shadow">
-              <h3 className="text-xl font-bold">
-                Duidelijke afspraken
-              </h3>
+              <h3 className="text-xl font-bold">Duidelijke afspraken</h3>
 
               <p className="mt-4 leading-8 text-slate-600">
                 Heldere communicatie en duidelijke afspraken tijdens ieder
@@ -376,9 +413,7 @@ export default async function ProjectPage({ params }: Props) {
             </div>
 
             <div className="rounded-3xl bg-white p-8 shadow">
-              <h3 className="text-xl font-bold">
-                Nette oplevering
-              </h3>
+              <h3 className="text-xl font-bold">Nette oplevering</h3>
 
               <p className="mt-4 leading-8 text-slate-600">
                 Wij zorgen voor een professionele en nette oplevering.
