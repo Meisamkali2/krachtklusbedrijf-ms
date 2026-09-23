@@ -24,6 +24,9 @@ export async function generateMetadata({
   return {
     title: project.seoTitle,
     description: project.seoDescription,
+    alternates: {
+      canonical: `https://www.krachtklusbedrijf-ms.nl/projecten/${project.slug}`,
+    },
   };
 }
 
@@ -36,10 +39,11 @@ export default async function ProjectPage({ params }: Props) {
     notFound();
   }
 
+  const isGalleryProject = "gallery" in project;
+
   return (
     <main className="bg-slate-50">
       {/* HERO */}
-
       <section className="bg-gradient-to-r from-blue-950 via-blue-900 to-blue-700 py-24 text-white">
         <div className="mx-auto max-w-7xl px-6">
           <p className="font-semibold uppercase tracking-[5px] text-blue-200">
@@ -55,33 +59,45 @@ export default async function ProjectPage({ params }: Props) {
           </p>
 
           <div className="mt-10 flex flex-wrap gap-4">
-            <span className="rounded-full bg-white/15 px-5 py-3">
-              📍 {project.city}
-            </span>
+            {!isGalleryProject && (
+              <>
+                <span className="rounded-full bg-white/15 px-5 py-3">
+                  📍 {project.city}
+                </span>
 
-            <span className="rounded-full bg-white/15 px-5 py-3">
-              🛠 {project.service}
-            </span>
+                <span className="rounded-full bg-white/15 px-5 py-3">
+                  🛠 {project.service}
+                </span>
 
-            <span className="rounded-full bg-white/15 px-5 py-3">
-              ⏱ {project.duration}
-            </span>
+                <span className="rounded-full bg-white/15 px-5 py-3">
+                  ⏱ {project.duration}
+                </span>
+              </>
+            )}
+
+            {isGalleryProject && (
+              <span className="rounded-full bg-white/15 px-5 py-3">
+                🛠 {project.service}
+              </span>
+            )}
           </div>
         </div>
       </section>
 
       {/* BREADCRUMB */}
-
       <section className="border-b bg-white">
-        <div className="mx-auto flex max-w-7xl gap-2 px-6 py-5 text-sm">
-          <Link href="/" className="text-slate-500 hover:text-blue-700">
+        <div className="mx-auto flex max-w-7xl flex-wrap gap-2 px-6 py-5 text-sm">
+          <Link
+            href="/"
+            className="text-slate-500 hover:text-blue-700"
+          >
             Home
           </Link>
 
           <span>/</span>
 
           <Link
-            href="/#projecten"
+            href="/projecten"
             className="text-slate-500 hover:text-blue-700"
           >
             Projecten
@@ -95,80 +111,128 @@ export default async function ProjectPage({ params }: Props) {
         </div>
       </section>
 
-      {/* BEFORE */}
+      {/* GALLERY PROJECTS */}
+      {isGalleryProject ? (
+        <section className="bg-white py-24">
+          <div className="mx-auto max-w-7xl px-6">
+            <div className="mx-auto max-w-4xl text-center">
+              <span className="rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-700">
+                PROJECTFOTO'S
+              </span>
 
-      <section className="mx-auto max-w-7xl px-6 py-24">
-        <div className="mb-12">
-          <span className="rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-700">
-            VOOR
-          </span>
+              <h2 className="mt-6 text-4xl font-black text-slate-900 md:text-5xl">
+                {project.title}
+              </h2>
 
-          <h2 className="mt-6 text-4xl font-black text-slate-900">
-            Situatie vóór de renovatie
-          </h2>
-        </div>
-
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {project.before.map((image) => (
-            <div
-              key={image}
-              className="relative aspect-[4/3] overflow-hidden rounded-3xl shadow-lg"
-            >
-              <Image
-                src={image}
-                alt={`${project.title} voor renovatie`}
-                fill
-                className="object-cover transition duration-500 hover:scale-110"
-              />
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* AFTER */}
-
-      <section className="mx-auto max-w-7xl px-6 pb-24">
-        <div className="mb-12">
-          <span className="rounded-full bg-green-100 px-4 py-2 text-sm font-semibold text-green-700">
-            NA
-          </span>
-
-          <h2 className="mt-6 text-4xl font-black text-slate-900">
-            Resultaat na de renovatie
-          </h2>
-        </div>
-
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {project.after.map((image) => (
-            <div
-              key={image}
-              className="relative aspect-[4/3] overflow-hidden rounded-3xl shadow-lg"
-            >
-              <Image
-                src={image}
-                alt={`${project.title} na renovatie`}
-                fill
-                className="object-cover transition duration-500 hover:scale-110"
-              />
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* PROJECT INFO */}
-
-      <section className="bg-white py-24">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="grid gap-8 md:grid-cols-3">
-            <div className="rounded-3xl bg-slate-50 p-8 text-center">
-              <h3 className="text-lg font-semibold text-slate-500">
-                Locatie
-              </h3>
-
-              <p className="mt-3 text-2xl font-bold text-blue-700">
-                {project.city}
+              <p className="mt-6 text-lg leading-9 text-slate-600">
+                Bekijk de foto's van dit project en ontdek het vakmanschap
+                van M.S. Kracht Klusbedrijf.
               </p>
             </div>
+
+            <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {project.gallery?.map((image, index) => (
+                <div
+                  key={image}
+                  className="group relative aspect-[4/3] overflow-hidden rounded-3xl bg-slate-100 shadow-lg"
+                >
+                  <Image
+                    src={image}
+                    alt={`${project.title} projectfoto ${index + 1}`}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover transition duration-700 group-hover:scale-105"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : (
+        <>
+          {/* BEFORE */}
+          <section className="mx-auto max-w-7xl px-6 py-24">
+            <div className="mb-12">
+              <span className="rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-700">
+                VOOR
+              </span>
+
+              <h2 className="mt-6 text-4xl font-black text-slate-900">
+                Situatie vóór de renovatie
+              </h2>
+            </div>
+
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {project.before.map((image) => (
+                <div
+                  key={image}
+                  className="relative aspect-[4/3] overflow-hidden rounded-3xl shadow-lg"
+                >
+                  <Image
+                    src={image}
+                    alt={`${project.title} voor renovatie`}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover transition duration-500 hover:scale-110"
+                  />
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* AFTER */}
+          <section className="mx-auto max-w-7xl px-6 pb-24">
+            <div className="mb-12">
+              <span className="rounded-full bg-green-100 px-4 py-2 text-sm font-semibold text-green-700">
+                NA
+              </span>
+
+              <h2 className="mt-6 text-4xl font-black text-slate-900">
+                Resultaat na de renovatie
+              </h2>
+            </div>
+
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {project.after.map((image) => (
+                <div
+                  key={image}
+                  className="relative aspect-[4/3] overflow-hidden rounded-3xl shadow-lg"
+                >
+                  <Image
+                    src={image}
+                    alt={`${project.title} na renovatie`}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover transition duration-500 hover:scale-110"
+                  />
+                </div>
+              ))}
+            </div>
+          </section>
+        </>
+      )}
+
+      {/* PROJECT INFO */}
+      <section className="bg-white py-24">
+        <div className="mx-auto max-w-7xl px-6">
+          <div
+            className={
+              isGalleryProject
+                ? "grid gap-8 md:grid-cols-2"
+                : "grid gap-8 md:grid-cols-3"
+            }
+          >
+            {!isGalleryProject && (
+              <div className="rounded-3xl bg-slate-50 p-8 text-center">
+                <h3 className="text-lg font-semibold text-slate-500">
+                  Locatie
+                </h3>
+
+                <p className="mt-3 text-2xl font-bold text-blue-700">
+                  {project.city}
+                </p>
+              </div>
+            )}
 
             <div className="rounded-3xl bg-slate-50 p-8 text-center">
               <h3 className="text-lg font-semibold text-slate-500">
@@ -180,21 +244,34 @@ export default async function ProjectPage({ params }: Props) {
               </p>
             </div>
 
-            <div className="rounded-3xl bg-slate-50 p-8 text-center">
-              <h3 className="text-lg font-semibold text-slate-500">
-                Duur
-              </h3>
+            {!isGalleryProject && (
+              <div className="rounded-3xl bg-slate-50 p-8 text-center">
+                <h3 className="text-lg font-semibold text-slate-500">
+                  Duur
+                </h3>
 
-              <p className="mt-3 text-2xl font-bold text-blue-700">
-                {project.duration}
-              </p>
-            </div>
+                <p className="mt-3 text-2xl font-bold text-blue-700">
+                  {project.duration}
+                </p>
+              </div>
+            )}
+
+            {isGalleryProject && (
+              <div className="rounded-3xl bg-slate-50 p-8 text-center">
+                <h3 className="text-lg font-semibold text-slate-500">
+                  Foto's
+                </h3>
+
+                <p className="mt-3 text-2xl font-bold text-blue-700">
+                  {project.gallery?.length ?? 0} foto's
+                </p>
+              </div>
+            )}
           </div>
         </div>
       </section>
 
       {/* ABOUT PROJECT */}
-
       <section className="bg-slate-50 py-24">
         <div className="mx-auto max-w-5xl px-6">
           <span className="rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-700">
@@ -207,31 +284,26 @@ export default async function ProjectPage({ params }: Props) {
 
           <div className="mt-10 space-y-8 text-lg leading-9 text-slate-700">
             <p>
-              Voor dit project heeft M.S. Kracht Klusbedrijf alle
-              werkzaamheden uitgevoerd met oog voor detail, duurzaamheid en
-              kwaliteit. Vanaf de eerste inspectie tot de uiteindelijke
-              oplevering is iedere stap zorgvuldig gepland en professioneel
-              uitgevoerd.
+              Voor dit project heeft M.S. Kracht Klusbedrijf de werkzaamheden
+              zorgvuldig uitgevoerd met aandacht voor detail, kwaliteit en een
+              nette afwerking.
             </p>
 
             <p>
-              Wij werken uitsluitend met hoogwaardige materialen zodat het
-              eindresultaat jarenlang mooi blijft. Door onze ervaring kunnen
-              wij snel schakelen, netjes werken en een hoogwaardige afwerking
-              leveren.
+              We werken met aandacht voor de bestaande situatie en stemmen de
+              werkzaamheden af op de wensen van de klant.
             </p>
 
             <p>
-              Of het nu gaat om een complete renovatie, schilderwerk, vloeren,
-              badkamers, isolatie of een uitbouw: iedere opdracht voeren wij
-              uit alsof het onze eigen woning is.
+              Van stucwerk en schilderwerk tot tegelwerk en andere
+              renovatiewerkzaamheden: ieder project wordt zorgvuldig uitgevoerd
+              met oog voor het eindresultaat.
             </p>
           </div>
         </div>
       </section>
 
       {/* SERVICES */}
-
       <section className="bg-white py-24">
         <div className="mx-auto max-w-6xl px-6">
           <div className="text-center">
@@ -258,7 +330,6 @@ export default async function ProjectPage({ params }: Props) {
       </section>
 
       {/* WHY US */}
-
       <section className="bg-slate-50 py-24">
         <div className="mx-auto max-w-6xl px-6">
           <div className="text-center">
@@ -273,7 +344,9 @@ export default async function ProjectPage({ params }: Props) {
 
           <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
             <div className="rounded-3xl bg-white p-8 shadow">
-              <h3 className="text-xl font-bold">Ervaring</h3>
+              <h3 className="text-xl font-bold">
+                Ervaring
+              </h3>
 
               <p className="mt-4 leading-8 text-slate-600">
                 Ervaren vakmensen met aandacht voor kwaliteit en detail.
@@ -281,7 +354,9 @@ export default async function ProjectPage({ params }: Props) {
             </div>
 
             <div className="rounded-3xl bg-white p-8 shadow">
-              <h3 className="text-xl font-bold">Kwaliteit</h3>
+              <h3 className="text-xl font-bold">
+                Kwaliteit
+              </h3>
 
               <p className="mt-4 leading-8 text-slate-600">
                 Wij werken met hoogwaardige materialen en zorgen voor een
@@ -290,7 +365,9 @@ export default async function ProjectPage({ params }: Props) {
             </div>
 
             <div className="rounded-3xl bg-white p-8 shadow">
-              <h3 className="text-xl font-bold">Duidelijke afspraken</h3>
+              <h3 className="text-xl font-bold">
+                Duidelijke afspraken
+              </h3>
 
               <p className="mt-4 leading-8 text-slate-600">
                 Heldere communicatie en duidelijke afspraken tijdens ieder
@@ -299,7 +376,9 @@ export default async function ProjectPage({ params }: Props) {
             </div>
 
             <div className="rounded-3xl bg-white p-8 shadow">
-              <h3 className="text-xl font-bold">Nette oplevering</h3>
+              <h3 className="text-xl font-bold">
+                Nette oplevering
+              </h3>
 
               <p className="mt-4 leading-8 text-slate-600">
                 Wij zorgen voor een professionele en nette oplevering.
@@ -309,59 +388,7 @@ export default async function ProjectPage({ params }: Props) {
         </div>
       </section>
 
-      {/* FAQ */}
-
-      <section className="bg-white py-24">
-        <div className="mx-auto max-w-5xl px-6">
-          <div className="text-center">
-            <span className="rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-700">
-              FAQ
-            </span>
-
-            <h2 className="mt-6 text-5xl font-black text-slate-900">
-              Veelgestelde vragen
-            </h2>
-          </div>
-
-          <div className="mt-16 space-y-6">
-            <div className="rounded-3xl border border-slate-200 bg-white p-8">
-              <h3 className="text-2xl font-bold">
-                Werken jullie alleen in Elst?
-              </h3>
-
-              <p className="mt-4 leading-8 text-slate-600">
-                Nee. Wij werken in Elst, Arnhem, Nijmegen en de rest van
-                Gelderland.
-              </p>
-            </div>
-
-            <div className="rounded-3xl border border-slate-200 bg-white p-8">
-              <h3 className="text-2xl font-bold">
-                Kan ik vrijblijvend een offerte aanvragen?
-              </h3>
-
-              <p className="mt-4 leading-8 text-slate-600">
-                Ja. Wij komen graag langs om uw wensen te bespreken en maken
-                vervolgens een vrijblijvende offerte.
-              </p>
-            </div>
-
-            <div className="rounded-3xl border border-slate-200 bg-white p-8">
-              <h3 className="text-2xl font-bold">
-                Hoe snel kunnen jullie beginnen?
-              </h3>
-
-              <p className="mt-4 leading-8 text-slate-600">
-                Dit hangt af van de planning. Neem contact met ons op voor de
-                actuele beschikbaarheid.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* CTA */}
-
       <section className="bg-gradient-to-r from-blue-900 to-blue-700 py-24 text-white">
         <div className="mx-auto max-w-4xl px-6 text-center">
           <h2 className="text-5xl font-black">
@@ -369,9 +396,9 @@ export default async function ProjectPage({ params }: Props) {
           </h2>
 
           <p className="mx-auto mt-8 max-w-3xl text-xl leading-9 text-blue-100">
-            Bent u op zoek naar een betrouwbaar klusbedrijf voor een renovatie,
-            schilderwerk, vloeren, isolatie of een complete verbouwing? Neem
-            vandaag nog contact met ons op voor een vrijblijvende offerte.
+            Bent u op zoek naar een betrouwbaar klusbedrijf voor renovatie,
+            schilderwerk, stucwerk, tegelwerk of een complete verbouwing?
+            Neem contact met ons op voor een vrijblijvende offerte.
           </p>
 
           <Link

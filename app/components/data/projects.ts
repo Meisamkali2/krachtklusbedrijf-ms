@@ -161,4 +161,74 @@ export const projects = [
       "Schilderwerk",
     ],
   },
+
+  {
+    slug: "stucwerk-schilderwerk",
+
+    title: "Stucwerk & Schilderwerk",
+
+    service: "Stucwerk & Binnenschilderwerk",
+
+    description:
+      "Professioneel stucwerk en binnenschilderwerk met aandacht voor een strakke wand- en plafondafwerking. De werkzaamheden omvatten het voorbereiden en glad afwerken van oppervlakken en het schilderen met verfspuit en roller.",
+
+    seoTitle:
+      "Stucwerk & Schilderwerk | M.S. Kracht Klusbedrijf",
+
+    seoDescription:
+      "Bekijk foto's van uitgevoerd stucwerk en binnenschilderwerk, inclusief wand- en plafondafwerking met verfspuit en roller.",
+
+    completed: "2026",
+
+    cover: "/projecten/stucwerk-schilderwerk/ms1.jpeg",
+
+    gallery: Array.from(
+      { length: 32 },
+      (_, index) =>
+        `/projecten/stucwerk-schilderwerk/ms${index + 1}.jpeg`
+    ),
+
+    services: [
+      "Stucwerk",
+      "Wandafwerking",
+      "Plafondafwerking",
+      "Binnenschilderwerk",
+      "Verfspuitwerk",
+      "Schilderwerk met roller",
+    ],
+  },
+
+  {
+    slug: "tegelwerk",
+
+    title: "Tegelwerk",
+
+    service: "Tegelwerk",
+
+    description:
+      "Vakkundig tegelwerk met aandacht voor een nette, strakke en duurzame afwerking.",
+
+    seoTitle:
+      "Tegelwerk | M.S. Kracht Klusbedrijf",
+
+    seoDescription:
+      "Bekijk foto's van uitgevoerd tegelwerk met aandacht voor een strakke en nette afwerking.",
+
+    completed: "2026",
+
+    cover: "/projecten/tegelwerk/ms1.jpeg",
+
+    gallery: Array.from(
+      { length: 18 },
+      (_, index) =>
+        `/projecten/tegelwerk/ms${index + 1}.jpeg`
+    ),
+
+    services: [
+      "Tegelwerk",
+      "Wandtegels",
+      "Vloertegels",
+      "Tegelafwerking",
+    ],
+  },
 ];
