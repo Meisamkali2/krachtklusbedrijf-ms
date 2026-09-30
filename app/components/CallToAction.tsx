@@ -5,24 +5,21 @@ export default function CallToAction() {
   return (
     <section className="bg-blue-950 py-24">
       <div className="mx-auto max-w-5xl px-6 text-center text-white">
-
         <span className="rounded-full bg-blue-800 px-4 py-2 text-sm font-semibold">
           GRATIS OFFERTE
         </span>
 
         <h2 className="mt-8 text-5xl font-bold leading-tight">
-          Klaar om uw woning te renoveren?
+          Op zoek naar een betrouwbaar klusbedrijf?
         </h2>
 
         <p className="mx-auto mt-8 max-w-3xl text-xl leading-8 text-blue-100">
-          Wilt u uw woning laten renoveren of een vrijblijvende offerte
-          ontvangen? Neem vandaag nog contact met ons op.
-          Wij denken graag met u mee en zorgen voor een professionele
-          uitvoering van uw project.
+          Wilt u uw woning laten renoveren, schilderen of verbouwen? Of zoekt u
+          een klusbedrijf voor een andere klus in Elst en omgeving? Vraag
+          vrijblijvend een offerte aan en vertel ons wat u nodig heeft.
         </p>
 
         <div className="mt-12 flex flex-col justify-center gap-5 sm:flex-row">
-
           <Link
             href="#contact"
             className="inline-flex items-center justify-center gap-3 rounded-xl bg-white px-8 py-4 text-lg font-bold text-blue-900 transition hover:scale-105"
@@ -38,9 +35,7 @@ export default function CallToAction() {
           >
             Bekijk Projecten
           </Link>
-
         </div>
-
       </div>
     </section>
   );
