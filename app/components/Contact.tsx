@@ -12,6 +12,7 @@ import { useState } from "react";
 
 export default function Contact() {
   const [status, setStatus] = useState("");
+  const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -19,6 +20,7 @@ export default function Contact() {
 
     setLoading(true);
     setStatus("");
+    setSuccess(false);
 
     const form = event.currentTarget;
     const formData = new FormData(form);
@@ -48,6 +50,8 @@ export default function Contact() {
         );
         return;
       }
+
+      setSuccess(true);
 
       setStatus(
         result.message ||
@@ -231,14 +235,37 @@ export default function Contact() {
                 disabled={loading}
                 className="w-full rounded-xl bg-blue-600 py-4 text-lg font-bold transition duration-300 hover:scale-[1.02] hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60"
               >
-                {loading
-                  ? "Verzenden..."
-                  : "Verstuur Offerte"}
+                {loading ? "Verzenden..." : "Verstuur Offerte"}
               </button>
 
               {status && (
-                <div className="rounded-xl border border-white/10 bg-white/5 p-4 text-center text-slate-200">
-                  {status}
+                <div
+                  className={`rounded-2xl border p-5 text-center ${
+                    success
+                      ? "border-green-500/30 bg-green-500/10 text-green-100"
+                      : "border-red-500/30 bg-red-500/10 text-red-100"
+                  }`}
+                >
+                  {success ? (
+                    <>
+                      <p className="text-lg font-bold">
+                        ✓ Aanvraag succesvol verzonden
+                      </p>
+
+                      <p className="mt-3 leading-7">
+                        {status}
+                      </p>
+
+                      <p className="mt-4 text-sm leading-6 text-green-200">
+                        📩 Controleer ook uw map{" "}
+                        <strong>Spam / Ongewenste e-mail</strong>{" "}
+                        als u de bevestigingsmail niet direct in uw
+                        inbox ziet.
+                      </p>
+                    </>
+                  ) : (
+                    <p>{status}</p>
+                  )}
                 </div>
               )}
             </form>
