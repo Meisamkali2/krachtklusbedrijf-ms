@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { Menu, X, Phone } from "lucide-react";
 import { useEffect, useState } from "react";
 
@@ -20,15 +19,19 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed left-0 top-0 z-50 w-full transition-all duration-300 ${
+      className={`fixed left-0 top-0 z-[9999] w-full transition-all duration-300 ${
         scrolled
           ? "bg-slate-950/95 shadow-2xl backdrop-blur-xl"
           : "bg-transparent"
       }`}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
+      <div className="relative z-[9999] mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
         {/* Logo */}
-        <Link href="/" className="group" aria-label="M.S. Kracht Klusbedrijf">
+        <a
+          href="/"
+          className="group"
+          aria-label="M.S. Kracht Klusbedrijf"
+        >
           <div className="flex flex-col">
             <span className="text-3xl font-black tracking-tight text-white">
               M.S.
@@ -38,55 +41,55 @@ export default function Header() {
               Kracht Klusbedrijf
             </span>
           </div>
-        </Link>
+        </a>
 
         {/* Desktop Menu */}
         <nav
           aria-label="Hoofdnavigatie"
-          className="hidden items-center gap-8 text-white lg:flex"
+          className="relative z-[9999] hidden items-center gap-8 text-white lg:flex"
         >
-          <Link
+          <a
             href="/"
-            className="transition hover:text-blue-300"
+            className="cursor-pointer transition hover:text-blue-300"
           >
             Home
-          </Link>
+          </a>
 
-          <Link
+          <a
             href="/#over-ons"
-            className="transition hover:text-blue-300"
+            className="cursor-pointer transition hover:text-blue-300"
           >
             Over Ons
-          </Link>
+          </a>
 
-          <Link
+          <a
             href="/#diensten"
-            className="transition hover:text-blue-300"
+            className="cursor-pointer transition hover:text-blue-300"
           >
             Diensten
-          </Link>
+          </a>
 
-          <Link
+          <a
             href="/#projecten"
-            className="transition hover:text-blue-300"
+            className="cursor-pointer transition hover:text-blue-300"
           >
             Projecten
-          </Link>
+          </a>
 
-          <Link
+          <a
             href="/#contact"
-            className="transition hover:text-blue-300"
+            className="cursor-pointer transition hover:text-blue-300"
           >
             Contact
-          </Link>
+          </a>
         </nav>
 
         {/* Desktop CTA */}
-        <div className="hidden items-center gap-3 lg:flex">
+        <div className="relative z-[9999] hidden items-center gap-3 lg:flex">
           <a
             href="tel:+31643680281"
             aria-label="Bel M.S. Kracht Klusbedrijf"
-            className="inline-flex items-center gap-2 rounded-xl border border-white/20 px-4 py-3 font-semibold text-white transition duration-300 hover:bg-white/10"
+            className="inline-flex cursor-pointer items-center gap-2 rounded-xl border border-white/20 px-4 py-3 font-semibold text-white transition duration-300 hover:bg-white/10"
           >
             <Phone size={18} />
             Bel direct
@@ -94,7 +97,7 @@ export default function Header() {
 
           <a
             href="/#contact"
-            className="rounded-xl bg-blue-600 px-6 py-3 font-bold text-white shadow-lg transition duration-300 hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-xl"
+            className="cursor-pointer rounded-xl bg-blue-600 px-6 py-3 font-bold text-white shadow-lg transition duration-300 hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-xl"
           >
             Vraag vrijblijvend een offerte aan
           </a>
@@ -106,7 +109,7 @@ export default function Header() {
           onClick={() => setOpen(!open)}
           aria-label={open ? "Menu sluiten" : "Menu openen"}
           aria-expanded={open}
-          className="rounded-lg p-2 text-white transition hover:bg-white/10 lg:hidden"
+          className="relative z-[9999] cursor-pointer rounded-lg p-2 text-white transition hover:bg-white/10 lg:hidden"
         >
           {open ? <X size={30} /> : <Menu size={30} />}
         </button>
@@ -114,56 +117,56 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {open && (
-        <div className="border-t border-white/10 bg-slate-950/95 backdrop-blur-xl lg:hidden">
+        <div className="relative z-[9999] border-t border-white/10 bg-slate-950/95 backdrop-blur-xl lg:hidden">
           <nav
             aria-label="Mobiele navigatie"
             className="mx-auto flex max-w-7xl flex-col px-6 py-6"
           >
-            <Link
+            <a
               href="/"
               onClick={() => setOpen(false)}
-              className="rounded-lg px-4 py-4 font-medium text-white transition hover:bg-blue-600"
+              className="cursor-pointer rounded-lg px-4 py-4 font-medium text-white transition hover:bg-blue-600"
             >
               Home
-            </Link>
+            </a>
 
-            <Link
+            <a
               href="/#over-ons"
               onClick={() => setOpen(false)}
-              className="rounded-lg px-4 py-4 font-medium text-white transition hover:bg-blue-600"
+              className="cursor-pointer rounded-lg px-4 py-4 font-medium text-white transition hover:bg-blue-600"
             >
               Over Ons
-            </Link>
+            </a>
 
-            <Link
+            <a
               href="/#diensten"
               onClick={() => setOpen(false)}
-              className="rounded-lg px-4 py-4 font-medium text-white transition hover:bg-blue-600"
+              className="cursor-pointer rounded-lg px-4 py-4 font-medium text-white transition hover:bg-blue-600"
             >
               Diensten
-            </Link>
+            </a>
 
-            <Link
+            <a
               href="/#projecten"
               onClick={() => setOpen(false)}
-              className="rounded-lg px-4 py-4 font-medium text-white transition hover:bg-blue-600"
+              className="cursor-pointer rounded-lg px-4 py-4 font-medium text-white transition hover:bg-blue-600"
             >
               Projecten
-            </Link>
+            </a>
 
-            <Link
+            <a
               href="/#contact"
               onClick={() => setOpen(false)}
-              className="rounded-lg px-4 py-4 font-medium text-white transition hover:bg-blue-600"
+              className="cursor-pointer rounded-lg px-4 py-4 font-medium text-white transition hover:bg-blue-600"
             >
               Contact
-            </Link>
+            </a>
 
             <div className="mt-5 grid gap-3 sm:grid-cols-2">
               <a
                 href="tel:+31643680281"
                 onClick={() => setOpen(false)}
-                className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 px-6 py-4 font-bold text-white transition hover:bg-white/10"
+                className="inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl border border-white/20 px-6 py-4 font-bold text-white transition hover:bg-white/10"
               >
                 <Phone size={20} />
                 Bel direct
@@ -172,7 +175,7 @@ export default function Header() {
               <a
                 href="/#contact"
                 onClick={() => setOpen(false)}
-                className="rounded-xl bg-blue-600 px-6 py-4 text-center font-bold text-white transition hover:bg-blue-700"
+                className="cursor-pointer rounded-xl bg-blue-600 px-6 py-4 text-center font-bold text-white transition hover:bg-blue-700"
               >
                 Vraag vrijblijvend een offerte aan
               </a>
