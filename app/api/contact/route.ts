@@ -65,7 +65,6 @@ export async function POST(request: Request) {
           subject: `Nieuwe offerte aanvraag van ${name}`,
           html: `
             <div style="font-family: Arial, sans-serif; line-height: 1.7; color: #1e293b; max-width: 700px; margin: 0 auto;">
-
               <div style="border-bottom: 3px solid #2563eb; padding-bottom: 16px; margin-bottom: 24px;">
                 <h1 style="margin: 0; color: #0f172a;">
                   Nieuwe offerte aanvraag
@@ -131,7 +130,6 @@ export async function POST(request: Request) {
                 <br />
                 Website: www.krachtklusbedrijf-ms.nl
               </div>
-
             </div>
           `,
         }),
@@ -178,10 +176,10 @@ export async function POST(request: Request) {
             from: "M.S. Kracht Klusbedrijf <info@krachtklusbedrijf-ms.nl>",
             to: [email],
             reply_to: "info@krachtklusbedrijf-ms.nl",
-            subject: "Uw offerteaanvraag is ontvangen | M.S. Kracht Klusbedrijf",
+            subject:
+              "Uw offerteaanvraag is ontvangen | M.S. Kracht Klusbedrijf",
             html: `
               <div style="font-family: Arial, sans-serif; line-height: 1.7; color: #1e293b; max-width: 700px; margin: 0 auto;">
-
                 <div
                   style="
                     background: #0f172a;
@@ -207,7 +205,6 @@ export async function POST(request: Request) {
                     border-radius: 0 0 16px 16px;
                   "
                 >
-
                   <p>
                     Beste ${escapeHtml(name)},
                   </p>
@@ -270,7 +267,6 @@ export async function POST(request: Request) {
                     <br />
                     Website: www.krachtklusbedrijf-ms.nl
                   </div>
-
                 </div>
               </div>
             `,

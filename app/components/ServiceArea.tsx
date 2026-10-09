@@ -20,13 +20,14 @@ export default function ServiceArea() {
             WERKGEBIED
           </span>
 
-          <h2 className="mt-6 text-5xl font-bold text-slate-900">
-            Ons werkgebied in Gelderland
+          <h2 className="mt-6 text-4xl font-bold text-slate-900 md:text-5xl">
+            Ons werkgebied in Elst en omgeving
           </h2>
 
           <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-gray-600">
-            M.S. Kracht Klusbedrijf is actief in Elst, Arnhem, Nijmegen
-            en omliggende plaatsen. Bekijk onze lokale pagina's voor meer
+            M.S. Kracht Klusbedrijf is gevestigd in Elst en actief in
+            omliggende plaatsen zoals Arnhem, Nijmegen, Bemmel, Huissen,
+            Lent en Oosterbeek. Bekijk onze lokale pagina&apos;s voor meer
             informatie over onze werkzaamheden per plaats.
           </p>
         </div>
@@ -54,20 +55,20 @@ export default function ServiceArea() {
           <Building2 size={48} className="mx-auto mb-6" />
 
           <h3 className="text-3xl font-bold">
-            Staat uw plaats er niet tussen?
+            Woont u buiten deze plaatsen?
           </h3>
 
           <p className="mx-auto mt-6 max-w-3xl leading-8 text-blue-100">
-            Geen probleem. Neem vrijblijvend contact met ons op.
-            We bespreken graag uw project en bekijken samen wat er
-            mogelijk is.
+            Staat uw plaats er niet tussen? Neem gerust contact met ons op.
+            Vertel ons waar u woont en wat u wilt laten uitvoeren. We
+            bespreken graag uw project en bekijken samen wat er mogelijk is.
           </p>
 
           <Link
             href="#contact"
             className="mt-8 inline-block rounded-xl bg-white px-8 py-4 font-semibold text-blue-900 transition hover:scale-105 hover:bg-blue-50"
           >
-            Neem contact op
+            Vraag vrijblijvend een offerte aan
           </Link>
         </div>
       </div>

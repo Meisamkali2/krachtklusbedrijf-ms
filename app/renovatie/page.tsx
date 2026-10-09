@@ -1,331 +1,330 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import {
+  ArrowRight,
+  CheckCircle,
+  Phone,
+} from "lucide-react";
 import ServiceLayout from "../components/services/ServiceLayout";
 
 export const metadata: Metadata = {
-  title: "Renovatie Elst | Woningrenovatie & Verbouwing",
+  title: "Renovatie in Elst | Woningrenovatie & Verbouwing",
   description:
-    "Renovatiebedrijf in Elst voor woningrenovatie en verbouwing. M.S. Kracht Klusbedrijf werkt in Elst, Arnhem, Nijmegen en omgeving.",
+    "Renovatie en verbouwing in Elst en omgeving. M.S. Kracht Klusbedrijf helpt met woningrenovatie en verschillende werkzaamheden binnen één project.",
   alternates: {
     canonical: "https://www.krachtklusbedrijf-ms.nl/renovatie",
   },
 };
 
+const renovationServices = [
+  {
+    title: "Badkamerrenovatie",
+    text: "Uw badkamer vernieuwen en de ruimte praktisch en verzorgd afwerken.",
+    href: "/badkamer-renovatie",
+  },
+  {
+    title: "Schilderwerk",
+    text: "Binnen- en buitenschilderwerk voor een frisse en nette afwerking.",
+    href: "/schilderwerk",
+  },
+  {
+    title: "Vloeren",
+    text: "Vloeren leggen en vernieuwen als onderdeel van een renovatie of verbouwing.",
+    href: "/vloeren",
+  },
+  {
+    title: "Isolatie",
+    text: "Isolatiewerkzaamheden voor meer comfort en een energiezuiniger woning.",
+    href: "/isolatie",
+  },
+  {
+    title: "Zolderrenovatie",
+    text: "Een zolder vernieuwen en de beschikbare ruimte beter benutten.",
+    href: "/zolder-renovatie",
+  },
+];
+
+const serviceAreas = [
+  { name: "Elst", href: "/elst" },
+  { name: "Arnhem", href: "/arnhem" },
+  { name: "Nijmegen", href: "/nijmegen" },
+  { name: "Huissen", href: "/huissen" },
+  { name: "Bemmel", href: "/bemmel" },
+  { name: "Lent", href: "/lent" },
+  { name: "Oosterbeek", href: "/oosterbeek" },
+];
+
+const steps = [
+  {
+    number: "01",
+    title: "Kennismaken",
+    text: "We bespreken uw wensen en bekijken welke werkzaamheden nodig zijn voor uw woning.",
+  },
+  {
+    number: "02",
+    title: "Werkzaamheden afstemmen",
+    text: "We bespreken de werkzaamheden en maken duidelijke afspraken over de uitvoering.",
+  },
+  {
+    number: "03",
+    title: "Uitvoering",
+    text: "De afgesproken werkzaamheden worden zorgvuldig uitgevoerd met aandacht voor een nette afwerking.",
+  },
+];
+
+export const revalidate = 3600;
+
 export default function RenovatiePage() {
   return (
     <ServiceLayout
       badge="RENOVATIE"
-      title="Professionele Renovatie in Elst, Arnhem & Nijmegen"
-      description="M.S. Kracht Klusbedrijf verzorgt woningrenovatie en verbouwingen met aandacht voor kwaliteit, planning en een nette uitvoering."
+      title="Renovatie en verbouwing in Elst en omgeving"
+      description="M.S. Kracht Klusbedrijf helpt particulieren met woningrenovatie en verschillende verbouwingswerkzaamheden in Elst en omliggende plaatsen."
       serviceName="Renovatie"
       serviceUrl="https://www.krachtklusbedrijf-ms.nl/renovatie"
     >
-      <section className="bg-white py-24">
+      {/* Intro */}
+      <section className="bg-white py-20 md:py-24">
         <div className="mx-auto max-w-5xl px-6">
-          <h2 className="text-4xl font-black text-slate-900">
-            Complete woningrenovatie
-          </h2>
-
-          <div className="mt-10 space-y-8 text-lg leading-9 text-slate-700">
-            <p>
-              Een woningrenovatie is een goede manier om uw huis te verbeteren,
-              te moderniseren en beter aan te laten sluiten bij uw wensen.
-              M.S. Kracht Klusbedrijf helpt particulieren met verschillende
-              renovatie- en verbouwingswerkzaamheden in Elst, Arnhem, Nijmegen
-              en omgeving.
+          <div className="max-w-4xl">
+            <p className="font-semibold uppercase tracking-[4px] text-blue-600">
+              Renovatie in Elst
             </p>
 
-            <p>
-              Of het nu gaat om het vernieuwen van een ruimte, het verbeteren
-              van de afwerking of een grotere verbouwing: wij bekijken samen
-              met u welke werkzaamheden nodig zijn. Door verschillende
-              werkzaamheden goed op elkaar af te stemmen, werken we naar een
-              verzorgd en duurzaam eindresultaat.
-            </p>
+            <h2 className="mt-4 text-4xl font-black text-slate-900 md:text-5xl">
+              Uw woning renoveren of verbouwen
+            </h2>
 
-            <p>
-              Een goede voorbereiding is daarbij belangrijk. We bespreken uw
-              wensen, bekijken de situatie en maken duidelijke afspraken over
-              de werkzaamheden. Zo weet u vooraf beter wat u kunt verwachten.
-            </p>
+            <div className="mt-8 space-y-6 text-lg leading-8 text-slate-600">
+              <p>
+                Een renovatie kan bestaan uit het vernieuwen van één ruimte
+                of uit meerdere werkzaamheden binnen dezelfde verbouwing.
+                M.S. Kracht Klusbedrijf helpt particulieren bij verschillende
+                renovatie- en verbouwingswerkzaamheden.
+              </p>
+
+              <p>
+                Van schilderwerk en vloeren tot badkamers, isolatie en
+                zolderrenovatie: we bespreken wat uw woning nodig heeft en
+                welke werkzaamheden bij uw project passen.
+              </p>
+
+              <p>
+                Een goede voorbereiding is belangrijk. Daarom bespreken we
+                vooraf uw wensen en maken we duidelijke afspraken over de
+                werkzaamheden en de verdere uitvoering.
+              </p>
+            </div>
+
+            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+              <Link
+                href="/#contact"
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-8 py-4 font-bold text-white shadow-lg transition duration-300 hover:-translate-y-1 hover:bg-blue-700 hover:shadow-xl"
+              >
+                Vraag vrijblijvend een offerte aan
+                <ArrowRight size={20} />
+              </Link>
+
+              <a
+                href="tel:+31643680281"
+                className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-slate-200 px-8 py-4 font-bold text-slate-800 transition duration-300 hover:border-blue-600 hover:text-blue-700"
+              >
+                <Phone size={19} />
+                Bel direct
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="bg-slate-50 py-24">
-        <div className="mx-auto max-w-6xl px-6">
+      {/* Renovation services */}
+      <section className="bg-slate-50 py-20 md:py-24">
+        <div className="mx-auto max-w-7xl px-6">
           <div className="max-w-3xl">
-            <span className="rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-700">
+            <p className="font-semibold uppercase tracking-[4px] text-blue-600">
               ONZE RENOVATIEWERKZAAMHEDEN
-            </span>
+            </p>
 
-            <h2 className="mt-6 text-4xl font-black text-slate-900 md:text-5xl">
-              Renovatie en verbouwing op maat
+            <h2 className="mt-4 text-4xl font-black text-slate-900 md:text-5xl">
+              Verschillende werkzaamheden binnen één renovatie
             </h2>
 
-            <p className="mt-6 text-lg leading-9 text-slate-700">
-              Iedere woning en ieder renovatieproject is anders. Daarom
-              stemmen we de werkzaamheden af op de bestaande situatie en uw
-              wensen.
+            <p className="mt-6 text-lg leading-8 text-slate-600">
+              Iedere woning en ieder renovatieproject is anders. Bekijk
+              hieronder enkele werkzaamheden die onderdeel kunnen zijn van
+              uw renovatie.
             </p>
           </div>
 
           <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            <Link
-              href="/badkamer-renovatie"
-              className="rounded-3xl bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
-            >
-              <h3 className="text-2xl font-bold text-slate-900">
-                Badkamerrenovatie
-              </h3>
+            {renovationServices.map((service) => (
+              <Link
+                key={service.title}
+                href={service.href}
+                className="group rounded-3xl border border-slate-200 bg-white p-8 shadow-lg transition duration-300 hover:-translate-y-1 hover:shadow-xl"
+              >
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-100">
+                  <CheckCircle
+                    size={23}
+                    className="text-blue-700"
+                  />
+                </div>
 
-              <p className="mt-4 leading-8 text-slate-600">
-                Uw badkamer vernieuwen en de ruimte praktisch en verzorgd
-                afwerken.
-              </p>
-            </Link>
+                <h3 className="mt-6 text-2xl font-bold text-slate-900">
+                  {service.title}
+                </h3>
 
-            <Link
-              href="/schilderwerk"
-              className="rounded-3xl bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
-            >
-              <h3 className="text-2xl font-bold text-slate-900">
-                Schilderwerk
-              </h3>
+                <p className="mt-4 leading-7 text-slate-600">
+                  {service.text}
+                </p>
 
-              <p className="mt-4 leading-8 text-slate-600">
-                Binnen- en buitenschilderwerk voor een frisse en nette
-                uitstraling van uw woning.
-              </p>
-            </Link>
-
-            <Link
-              href="/vloeren"
-              className="rounded-3xl bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
-            >
-              <h3 className="text-2xl font-bold text-slate-900">
-                Vloeren
-              </h3>
-
-              <p className="mt-4 leading-8 text-slate-600">
-                Vloeren leggen en vloerafwerking als onderdeel van uw
-                renovatie of verbouwing.
-              </p>
-            </Link>
-
-            <Link
-              href="/isolatie"
-              className="rounded-3xl bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
-            >
-              <h3 className="text-2xl font-bold text-slate-900">
-                Isolatie
-              </h3>
-
-              <p className="mt-4 leading-8 text-slate-600">
-                Isolatiewerkzaamheden om uw woning comfortabeler en
-                energiezuiniger te maken.
-              </p>
-            </Link>
-
-            <Link
-              href="/zolder-renovatie"
-              className="rounded-3xl bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
-            >
-              <h3 className="text-2xl font-bold text-slate-900">
-                Zolderrenovatie
-              </h3>
-
-              <p className="mt-4 leading-8 text-slate-600">
-                Uw zolder praktisch vernieuwen en beter benutten als onderdeel
-                van de woningrenovatie.
-              </p>
-            </Link>
+                <span className="mt-6 inline-flex items-center gap-2 font-bold text-blue-700">
+                  Bekijk dienst
+                  <ArrowRight
+                    size={18}
+                    className="transition-transform duration-300 group-hover:translate-x-1"
+                  />
+                </span>
+              </Link>
+            ))}
 
             <Link
               href="/projecten"
-              className="rounded-3xl bg-blue-900 p-8 text-white shadow-sm transition hover:-translate-y-1 hover:bg-blue-800"
+              className="group rounded-3xl bg-blue-900 p-8 text-white shadow-lg transition duration-300 hover:-translate-y-1 hover:bg-blue-800 hover:shadow-xl"
             >
-              <h3 className="text-2xl font-bold">
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/10">
+                <ArrowRight size={23} />
+              </div>
+
+              <h3 className="mt-6 text-2xl font-bold">
                 Bekijk onze projecten
               </h3>
 
-              <p className="mt-4 leading-8 text-blue-100">
-                Bekijk voorbeelden van renovatie- en verbouwingsprojecten die
-                door M.S. Kracht Klusbedrijf zijn uitgevoerd.
+              <p className="mt-4 leading-7 text-blue-100">
+                Bekijk voorbeelden van renovatie- en
+                verbouwingsprojecten die door M.S. Kracht Klusbedrijf
+                zijn uitgevoerd.
               </p>
+
+              <span className="mt-6 inline-flex items-center gap-2 font-bold">
+                Bekijk projecten
+                <ArrowRight
+                  size={18}
+                  className="transition-transform duration-300 group-hover:translate-x-1"
+                />
+              </span>
             </Link>
           </div>
         </div>
       </section>
 
-      <section className="bg-white py-24">
+      {/* Service area */}
+      <section className="bg-white py-20 md:py-24">
         <div className="mx-auto max-w-5xl px-6">
-          <h2 className="text-4xl font-black text-slate-900">
-            Renovatie in Elst, Arnhem en Nijmegen
-          </h2>
+          <div className="text-center">
+            <p className="font-semibold uppercase tracking-[4px] text-blue-600">
+              ONS WERKGEBIED
+            </p>
 
-          <div className="mt-10 space-y-8 text-lg leading-9 text-slate-700">
-            <p>
+            <h2 className="mt-4 text-4xl font-black text-slate-900 md:text-5xl">
+              Renovatie in Elst en omliggende plaatsen
+            </h2>
+
+            <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-600">
               M.S. Kracht Klusbedrijf is gevestigd in Elst en voert
-              renovatiewerkzaamheden uit voor woningen in Elst, Arnhem,
-              Nijmegen en omliggende plaatsen.
-            </p>
-
-            <p>
-              Door lokaal te werken kunnen we goed meedenken over de situatie
-              van uw woning en duidelijke afspraken maken over de uitvoering
-              van het project.
-            </p>
-
-            <p>
-              Naast Elst, Arnhem en Nijmegen zijn wij actief in onder andere
-              Bemmel, Huissen, Lent en Oosterbeek.
+              renovatie- en verbouwingswerkzaamheden uit in Elst en
+              omliggende plaatsen.
             </p>
           </div>
 
-          <div className="mt-12 flex flex-wrap gap-4">
-            <Link
-              href="/elst"
-              className="rounded-xl bg-slate-100 px-6 py-3 font-semibold text-slate-800 transition hover:bg-blue-100"
-            >
-              Klusbedrijf Elst
-            </Link>
-
-            <Link
-              href="/arnhem"
-              className="rounded-xl bg-slate-100 px-6 py-3 font-semibold text-slate-800 transition hover:bg-blue-100"
-            >
-              Klusbedrijf Arnhem
-            </Link>
-
-            <Link
-              href="/nijmegen"
-              className="rounded-xl bg-slate-100 px-6 py-3 font-semibold text-slate-800 transition hover:bg-blue-100"
-            >
-              Klusbedrijf Nijmegen
-            </Link>
-
-            <Link
-              href="/huissen"
-              className="rounded-xl bg-slate-100 px-6 py-3 font-semibold text-slate-800 transition hover:bg-blue-100"
-            >
-              Klusbedrijf Huissen
-            </Link>
-
-            <Link
-              href="/bemmel"
-              className="rounded-xl bg-slate-100 px-6 py-3 font-semibold text-slate-800 transition hover:bg-blue-100"
-            >
-              Klusbedrijf Bemmel
-            </Link>
-
-            <Link
-              href="/lent"
-              className="rounded-xl bg-slate-100 px-6 py-3 font-semibold text-slate-800 transition hover:bg-blue-100"
-            >
-              Klusbedrijf Lent
-            </Link>
-
-            <Link
-              href="/oosterbeek"
-              className="rounded-xl bg-slate-100 px-6 py-3 font-semibold text-slate-800 transition hover:bg-blue-100"
-            >
-              Klusbedrijf Oosterbeek
-            </Link>
+          <div className="mt-12 flex flex-wrap justify-center gap-3">
+            {serviceAreas.map((area) => (
+              <Link
+                key={area.name}
+                href={area.href}
+                className="rounded-xl bg-slate-100 px-6 py-3 font-semibold text-slate-800 transition hover:bg-blue-100 hover:text-blue-800"
+              >
+                Klusbedrijf {area.name}
+              </Link>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="bg-slate-50 py-24">
+      {/* Process */}
+      <section className="bg-slate-50 py-20 md:py-24">
         <div className="mx-auto max-w-5xl px-6">
-          <h2 className="text-4xl font-black text-slate-900">
-            Onze werkwijze
-          </h2>
+          <div className="text-center">
+            <p className="font-semibold uppercase tracking-[4px] text-blue-600">
+              ONZE WERKWIJZE
+            </p>
 
-          <div className="mt-12 grid gap-8 md:grid-cols-3">
-            <div className="rounded-3xl bg-white p-8 shadow-sm">
-              <div className="text-3xl font-black text-blue-700">01</div>
+            <h2 className="mt-4 text-4xl font-black text-slate-900 md:text-5xl">
+              Zo pakken we een renovatie aan
+            </h2>
 
-              <h3 className="mt-5 text-2xl font-bold text-slate-900">
-                Kennismaken
-              </h3>
+            <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-600">
+              Van de eerste aanvraag tot de uitvoering: duidelijke
+              communicatie helpt om uw renovatie goed voor te bereiden.
+            </p>
+          </div>
 
-              <p className="mt-4 leading-8 text-slate-600">
-                We bespreken uw wensen en bekijken welke renovatiewerkzaamheden
-                nodig zijn.
-              </p>
-            </div>
+          <div className="mt-14 grid gap-8 md:grid-cols-3">
+            {steps.map((step) => (
+              <div
+                key={step.number}
+                className="rounded-3xl bg-white p-8 shadow-lg"
+              >
+                <div className="text-3xl font-black text-blue-700">
+                  {step.number}
+                </div>
 
-            <div className="rounded-3xl bg-white p-8 shadow-sm">
-              <div className="text-3xl font-black text-blue-700">02</div>
+                <h3 className="mt-5 text-2xl font-bold text-slate-900">
+                  {step.title}
+                </h3>
 
-              <h3 className="mt-5 text-2xl font-bold text-slate-900">
-                Duidelijke afspraken
-              </h3>
-
-              <p className="mt-4 leading-8 text-slate-600">
-                We maken duidelijke afspraken over de werkzaamheden en de
-                verdere uitvoering van het project.
-              </p>
-            </div>
-
-            <div className="rounded-3xl bg-white p-8 shadow-sm">
-              <div className="text-3xl font-black text-blue-700">03</div>
-
-              <h3 className="mt-5 text-2xl font-bold text-slate-900">
-                Vakkundige uitvoering
-              </h3>
-
-              <p className="mt-4 leading-8 text-slate-600">
-                We voeren de afgesproken werkzaamheden zorgvuldig en netjes
-                uit, met aandacht voor het eindresultaat.
-              </p>
-            </div>
+                <p className="mt-4 leading-7 text-slate-600">
+                  {step.text}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="bg-white py-24">
-        <div className="mx-auto max-w-5xl px-6">
-          <h2 className="text-4xl font-black text-slate-900">
-            Waarom kiezen voor M.S. Kracht Klusbedrijf?
-          </h2>
-
-          <div className="mt-10 space-y-8 text-lg leading-9 text-slate-700">
-            <p>
-              Bij een renovatie wilt u kunnen vertrouwen op een nette
-              uitvoering en duidelijke communicatie. Wij denken mee over de
-              werkzaamheden en houden rekening met de wensen en bestaande
-              situatie van uw woning.
-            </p>
-
-            <p>
-              Van een specifieke renovatieklus tot meerdere werkzaamheden
-              binnen één verbouwing: we streven naar een verzorgd resultaat en
-              een prettige samenwerking.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-blue-950 py-24 text-white">
+      {/* Final CTA */}
+      <section className="bg-white py-20 md:py-24">
         <div className="mx-auto max-w-4xl px-6 text-center">
-          <h2 className="text-4xl font-black md:text-5xl">
-            Plannen voor een renovatie?
-          </h2>
-
-          <p className="mx-auto mt-6 max-w-3xl text-lg leading-9 text-blue-100">
-            Wilt u uw woning renoveren of verbouwen? Neem contact op met
-            M.S. Kracht Klusbedrijf voor meer informatie of een vrijblijvende
-            offerte.
+          <p className="font-semibold uppercase tracking-[4px] text-blue-600">
+            RENOVATIE IN ELST
           </p>
 
-          <Link
-            href="/#contact"
-            className="mt-10 inline-block rounded-xl bg-white px-10 py-5 text-lg font-bold text-blue-700 transition hover:scale-105"
-          >
-            Vraag Gratis Offerte
-          </Link>
+          <h2 className="mt-4 text-4xl font-black text-slate-900 md:text-5xl">
+            Wilt u uw renovatie bespreken?
+          </h2>
+
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-600">
+            Vertel ons wat u wilt laten renoveren of verbouwen. We bespreken
+            graag uw wensen en de mogelijkheden voor uw woning.
+          </p>
+
+          <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
+            <Link
+              href="/#contact"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-8 py-4 text-lg font-bold text-white shadow-lg transition duration-300 hover:-translate-y-1 hover:bg-blue-700 hover:shadow-xl"
+            >
+              Vraag vrijblijvend een offerte aan
+              <ArrowRight size={21} />
+            </Link>
+
+            <a
+              href="tel:+31643680281"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-slate-300 px-8 py-4 text-lg font-bold text-slate-800 transition duration-300 hover:border-blue-600 hover:text-blue-700"
+            >
+              <Phone size={20} />
+              Bel direct
+            </a>
+          </div>
         </div>
       </section>
     </ServiceLayout>

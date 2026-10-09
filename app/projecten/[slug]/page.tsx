@@ -88,6 +88,23 @@ export default async function ProjectPage({ params }: Props) {
               </span>
             )}
           </div>
+
+          {/* HERO CTA */}
+          <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+            <Link
+              href="/#contact"
+              className="inline-flex items-center justify-center rounded-xl bg-white px-7 py-4 font-bold text-blue-900 transition hover:-translate-y-1 hover:bg-blue-50"
+            >
+              Vraag vrijblijvend een offerte aan
+            </Link>
+
+            <Link
+              href="#projectinhoud"
+              className="inline-flex items-center justify-center rounded-xl border-2 border-white/60 px-7 py-4 font-bold text-white transition hover:border-white hover:bg-white/10"
+            >
+              Bekijk project
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -120,7 +137,7 @@ export default async function ProjectPage({ params }: Props) {
 
       {/* GALLERY PROJECTS */}
       {isGalleryProject ? (
-        <section className="bg-white py-24">
+        <section id="projectinhoud" className="bg-white py-24">
           <div className="mx-auto max-w-7xl px-6">
             <div className="mx-auto max-w-4xl text-center">
               <span className="rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-700">
@@ -153,12 +170,34 @@ export default async function ProjectPage({ params }: Props) {
                 </div>
               ))}
             </div>
+
+            {/* GALLERY CTA */}
+            <div className="mt-16 rounded-3xl bg-blue-950 px-6 py-10 text-center text-white md:px-10">
+              <h3 className="text-3xl font-bold">
+                Ook een vergelijkbaar project?
+              </h3>
+
+              <p className="mx-auto mt-4 max-w-2xl leading-8 text-blue-100">
+                Heeft u plannen voor schilderwerk, stucwerk, tegelwerk of een
+                andere renovatie? Vertel ons wat u wilt laten uitvoeren.
+              </p>
+
+              <Link
+                href="/#contact"
+                className="mt-8 inline-flex items-center justify-center rounded-xl bg-white px-8 py-4 text-lg font-bold text-blue-900 transition hover:-translate-y-1 hover:bg-blue-50"
+              >
+                Vraag vrijblijvend een offerte aan
+              </Link>
+            </div>
           </div>
         </section>
       ) : (
         <>
           {/* BEFORE */}
-          <section className="mx-auto max-w-7xl px-6 py-24">
+          <section
+            id="projectinhoud"
+            className="mx-auto max-w-7xl px-6 py-24"
+          >
             <div className="mb-12">
               <span className="rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-700">
                 VOOR
@@ -214,6 +253,25 @@ export default async function ProjectPage({ params }: Props) {
                   />
                 </div>
               ))}
+            </div>
+
+            {/* BEFORE / AFTER CTA */}
+            <div className="mt-16 rounded-3xl bg-blue-950 px-6 py-10 text-center text-white md:px-10">
+              <h3 className="text-3xl font-bold">
+                Heeft u plannen voor uw woning?
+              </h3>
+
+              <p className="mx-auto mt-4 max-w-2xl leading-8 text-blue-100">
+                Bespreek uw wensen met M.S. Kracht Klusbedrijf en vraag
+                vrijblijvend een offerte aan.
+              </p>
+
+              <Link
+                href="/#contact"
+                className="mt-8 inline-flex items-center justify-center rounded-xl bg-white px-8 py-4 text-lg font-bold text-blue-900 transition hover:-translate-y-1 hover:bg-blue-50"
+              >
+                Vraag vrijblijvend een offerte aan
+              </Link>
             </div>
           </section>
         </>
@@ -426,7 +484,7 @@ export default async function ProjectPage({ params }: Props) {
       {/* CTA */}
       <section className="bg-gradient-to-r from-blue-900 to-blue-700 py-24 text-white">
         <div className="mx-auto max-w-4xl px-6 text-center">
-          <h2 className="text-5xl font-black">
+          <h2 className="text-4xl font-black md:text-5xl">
             Ook een project laten uitvoeren?
           </h2>
 
@@ -436,12 +494,21 @@ export default async function ProjectPage({ params }: Props) {
             Neem contact met ons op voor een vrijblijvende offerte.
           </p>
 
-          <Link
-            href="/#contact"
-            className="mt-10 inline-block rounded-xl bg-white px-10 py-5 text-lg font-bold text-blue-700 transition hover:scale-105"
-          >
-            Vraag Gratis Offerte
-          </Link>
+          <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
+            <Link
+              href="/#contact"
+              className="inline-flex items-center justify-center rounded-xl bg-white px-10 py-5 text-lg font-bold text-blue-700 transition hover:-translate-y-1 hover:bg-blue-50"
+            >
+              Vraag vrijblijvend een offerte aan
+            </Link>
+
+            <Link
+              href="/projecten"
+              className="inline-flex items-center justify-center rounded-xl border-2 border-white px-10 py-5 text-lg font-bold text-white transition hover:bg-white hover:text-blue-900"
+            >
+              Bekijk meer projecten
+            </Link>
+          </div>
         </div>
       </section>
     </main>

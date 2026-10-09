@@ -24,11 +24,9 @@ const schema = {
   logo: {
     "@type": "ImageObject",
 
-    "@id":
-      "https://www.krachtklusbedrijf-ms.nl/#logo",
+    "@id": "https://www.krachtklusbedrijf-ms.nl/#logo",
 
-    url:
-      "https://www.krachtklusbedrijf-ms.nl/images/ms-kracht-logo.png",
+    url: "https://www.krachtklusbedrijf-ms.nl/images/ms-kracht-logo.png",
 
     contentUrl:
       "https://www.krachtklusbedrijf-ms.nl/images/ms-kracht-logo.png",
@@ -43,8 +41,7 @@ const schema = {
   address: {
     "@type": "PostalAddress",
 
-    streetAddress:
-      "Koningin Wilhelminastraat 73",
+    streetAddress: "Koningin Wilhelminastraat 73",
 
     postalCode: "6661 VW",
 
@@ -247,8 +244,7 @@ const schema = {
         itemOffered: {
           "@type": "Service",
           name: "Elektrotechniek",
-          serviceType:
-            "Elektrotechnische werkzaamheden",
+          serviceType: "Elektrotechnische werkzaamheden",
           areaServed: [
             "Elst",
             "Arnhem",
@@ -275,9 +271,9 @@ const schema = {
         "Friday",
       ],
 
-      opens: "08:00",
+      opens: "05:00",
 
-      closes: "18:00",
+      closes: "17:00",
     },
   ],
 
@@ -294,10 +290,7 @@ const schema = {
 
     contactType: "customer service",
 
-    availableLanguage: [
-      "Dutch",
-      "English",
-    ],
+    availableLanguage: ["Dutch", "English"],
   },
 
   sameAs: [

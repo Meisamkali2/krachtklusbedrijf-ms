@@ -1,255 +1,281 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import {
+  ArrowRight,
+  CheckCircle,
+  Phone,
+} from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Klusbedrijf Bemmel | Renovatie & Verbouwing | M.S. Kracht",
   description:
-    "M.S. Kracht Klusbedrijf voor renovatie en verbouwing in Bemmel. Schilderwerk, badkamers, vloeren, isolatie en zolderrenovatie voor woningen.",
+    "Klusbedrijf in Bemmel voor renovatie, verbouwing, schilderwerk, vloeren, badkamerrenovatie, zolderrenovatie en isolatie. Vraag vrijblijvend een offerte aan.",
   alternates: {
     canonical: "https://www.krachtklusbedrijf-ms.nl/bemmel",
   },
 };
 
+const services = [
+  {
+    title: "Renovatie & verbouwing",
+    text: "Verschillende werkzaamheden voor het vernieuwen, aanpassen en verbeteren van uw woning.",
+    href: "/renovatie",
+  },
+  {
+    title: "Schilderwerk",
+    text: "Binnen- en buitenschilderwerk voor een frisse uitstraling en een verzorgde afwerking.",
+    href: "/schilderwerk",
+  },
+  {
+    title: "Badkamerrenovatie",
+    text: "Een bestaande badkamer vernieuwen en de ruimte praktisch en verzorgd laten afwerken.",
+    href: "/badkamer-renovatie",
+  },
+  {
+    title: "Vloeren leggen",
+    text: "Vloeren leggen en vernieuwen, waaronder laminaat en andere vloerafwerkingen.",
+    href: "/vloeren",
+  },
+  {
+    title: "Zolderrenovatie",
+    text: "Een zolder renoveren, isoleren en afwerken zodat de ruimte beter bij uw wensen past.",
+    href: "/zolder-renovatie",
+  },
+  {
+    title: "Isolatie",
+    text: "Isolatiewerkzaamheden als onderdeel van renovatie en verbouwing.",
+    href: "/isolatie",
+  },
+];
+
+const benefits = [
+  {
+    title: "Persoonlijke aanpak",
+    text: "We luisteren naar uw wensen en bespreken vooraf duidelijk wat er moet gebeuren.",
+  },
+  {
+    title: "Nette afwerking",
+    text: "We werken zorgvuldig en besteden aandacht aan de details van het project.",
+  },
+  {
+    title: "Verschillende diensten",
+    text: "Renovatie, schilderwerk, vloeren, badkamers, isolatie en zolderrenovatie kunnen onderdeel zijn van één project.",
+  },
+  {
+    title: "Actief in Bemmel",
+    text: "M.S. Kracht Klusbedrijf is gevestigd in Elst en werkt ook voor particuliere projecten in Bemmel.",
+  },
+];
+
+const nearbyAreas = [
+  { name: "Elst", href: "/elst" },
+  { name: "Arnhem", href: "/arnhem" },
+  { name: "Nijmegen", href: "/nijmegen" },
+  { name: "Huissen", href: "/huissen" },
+  { name: "Lent", href: "/lent" },
+  { name: "Oosterbeek", href: "/oosterbeek" },
+];
+
 export default function BemmelPage() {
   return (
     <main className="min-h-screen bg-white">
       {/* Hero */}
-      <section className="bg-slate-950 px-6 py-24 text-white">
+      <section className="bg-slate-950 px-6 py-24 text-white md:py-28">
         <div className="mx-auto max-w-6xl">
-          <p className="font-bold uppercase tracking-wider text-blue-400">
-            M.S. Kracht Klusbedrijf
+          <p className="font-bold uppercase tracking-[4px] text-blue-400">
+            M.S. Kracht Klusbedrijf · Regio Bemmel
           </p>
 
           <h1 className="mt-5 max-w-4xl text-4xl font-black leading-tight md:text-6xl">
             Klusbedrijf in Bemmel voor renovatie en verbouwing
           </h1>
 
-          <p className="mt-8 max-w-3xl text-lg leading-8 text-gray-300 md:text-xl">
-            Heeft u een renovatie, verbouwing of klus in Bemmel gepland?
-            M.S. Kracht Klusbedrijf helpt bij verschillende werkzaamheden in
-            en rondom uw woning, van schilderwerk en vloeren tot badkamer- en
-            zolderrenovatie.
+          <p className="mt-8 max-w-3xl text-lg leading-8 text-slate-300 md:text-xl">
+            M.S. Kracht Klusbedrijf helpt particulieren in Bemmel met
+            renovatie, verbouwing, schilderwerk, vloeren, badkamers,
+            zolderrenovatie en isolatie.
           </p>
 
           <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+            <Link
+              href="/#contact"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-8 py-4 text-lg font-bold text-white shadow-lg transition duration-300 hover:-translate-y-1 hover:bg-blue-700 hover:shadow-xl"
+            >
+              Vraag vrijblijvend een offerte aan
+              <ArrowRight size={21} />
+            </Link>
+
             <a
               href="tel:+31643680281"
-              className="rounded-xl bg-blue-600 px-7 py-4 text-center font-semibold transition hover:bg-blue-700"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-white/80 px-8 py-4 text-lg font-bold text-white transition duration-300 hover:bg-white hover:text-slate-950"
             >
-              Bel direct: 06 43680281
+              <Phone size={20} />
+              Bel direct
             </a>
+          </div>
 
-            <Link
-              href="/projecten"
-              className="rounded-xl border border-white px-7 py-4 text-center font-semibold transition hover:bg-white hover:text-slate-950"
-            >
-              Bekijk onze projecten
-            </Link>
+          <div className="mt-10 flex flex-col gap-4 text-sm text-slate-300 sm:flex-row sm:items-center sm:gap-6">
+            <span className="flex items-center gap-2">
+              <CheckCircle size={18} className="text-blue-400" />
+              Gevestigd in Elst
+            </span>
+
+            <span className="flex items-center gap-2">
+              <CheckCircle size={18} className="text-blue-400" />
+              Actief in Bemmel en omgeving
+            </span>
           </div>
         </div>
       </section>
 
       {/* Intro */}
-      <section className="px-6 py-20">
+      <section className="px-6 py-20 md:py-24">
         <div className="mx-auto max-w-5xl">
-          <h2 className="text-3xl font-bold text-slate-900 md:text-4xl">
+          <p className="font-semibold uppercase tracking-[4px] text-blue-600">
+            KLUSBEDRIJF IN BEMMEL
+          </p>
+
+          <h2 className="mt-4 text-4xl font-black text-slate-900 md:text-5xl">
             Renovatie en klussen in Bemmel
           </h2>
 
-          <p className="mt-6 text-lg leading-8 text-slate-700">
-            Een woning renoveren of verbouwen vraagt om een duidelijke
-            voorbereiding en een zorgvuldige uitvoering. M.S. Kracht
-            Klusbedrijf werkt voor klanten in Bemmel aan verschillende
-            renovatie-, onderhouds- en verbouwingswerkzaamheden.
-          </p>
+          <div className="mt-8 max-w-4xl space-y-6 text-lg leading-8 text-slate-600">
+            <p>
+              Een woning renoveren of verbouwen vraagt om een duidelijke
+              voorbereiding en een zorgvuldige uitvoering. M.S. Kracht
+              Klusbedrijf helpt particuliere klanten in Bemmel met
+              verschillende renovatie-, onderhouds- en
+              verbouwingswerkzaamheden.
+            </p>
 
-          <p className="mt-5 text-lg leading-8 text-slate-700">
-            Wilt u uw woning opnieuw laten schilderen, een nieuwe vloer laten
-            plaatsen of een badkamer, zolder of isolatie aanpakken? Wij
-            bespreken vooraf de werkzaamheden en kijken naar een praktische
-            aanpak die past bij uw project.
-          </p>
+            <p>
+              Wilt u uw woning opnieuw laten schilderen, een nieuwe vloer
+              laten plaatsen of een badkamer, zolder of isolatie aanpakken?
+              We bespreken vooraf de werkzaamheden en kijken naar een
+              praktische aanpak die past bij uw project.
+            </p>
+
+            <p>
+              M.S. Kracht Klusbedrijf is gevestigd in Elst en is vanuit daar
+              ook actief in Bemmel en omliggende plaatsen.
+            </p>
+          </div>
         </div>
       </section>
 
       {/* Services */}
-      <section className="bg-slate-50 px-6 py-20">
+      <section className="bg-slate-50 px-6 py-20 md:py-24">
         <div className="mx-auto max-w-6xl">
-          <h2 className="text-3xl font-bold text-slate-900 md:text-4xl">
-            Onze werkzaamheden in Bemmel
-          </h2>
+          <div className="max-w-3xl">
+            <p className="font-semibold uppercase tracking-[4px] text-blue-600">
+              ONZE DIENSTEN IN BEMMEL
+            </p>
 
-          <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
-            M.S. Kracht Klusbedrijf voert verschillende werkzaamheden uit voor
-            woningen en renovatieprojecten in Bemmel.
-          </p>
+            <h2 className="mt-4 text-4xl font-black text-slate-900 md:text-5xl">
+              Werkzaamheden voor uw woning
+            </h2>
 
-          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            <div className="rounded-2xl bg-white p-7 shadow-sm">
-              <h3 className="text-xl font-bold text-slate-900">
-                Renovatie & verbouwing
-              </h3>
+            <p className="mt-6 text-lg leading-8 text-slate-600">
+              M.S. Kracht Klusbedrijf voert verschillende werkzaamheden uit
+              voor woningen en renovatieprojecten in Bemmel.
+            </p>
+          </div>
 
-              <p className="mt-3 leading-7 text-slate-600">
-                Verschillende werkzaamheden voor het vernieuwen, aanpassen en
-                verbeteren van uw woning.
-              </p>
-
+          <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {services.map((service) => (
               <Link
-                href="/renovatie"
-                className="mt-5 inline-block font-semibold text-blue-700 hover:text-blue-900"
+                key={service.title}
+                href={service.href}
+                className="group rounded-3xl border border-slate-200 bg-white p-8 shadow-lg transition duration-300 hover:-translate-y-1 hover:shadow-xl"
               >
-                Bekijk renovatie →
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-100">
+                  <CheckCircle
+                    size={23}
+                    className="text-blue-700"
+                  />
+                </div>
+
+                <h3 className="mt-6 text-2xl font-bold text-slate-900">
+                  {service.title}
+                </h3>
+
+                <p className="mt-4 leading-7 text-slate-600">
+                  {service.text}
+                </p>
+
+                <span className="mt-6 inline-flex items-center gap-2 font-bold text-blue-700">
+                  Bekijk dienst
+                  <ArrowRight
+                    size={18}
+                    className="transition-transform duration-300 group-hover:translate-x-1"
+                  />
+                </span>
               </Link>
-            </div>
-
-            <div className="rounded-2xl bg-white p-7 shadow-sm">
-              <h3 className="text-xl font-bold text-slate-900">
-                Schilderwerk
-              </h3>
-
-              <p className="mt-3 leading-7 text-slate-600">
-                Binnen- en buitenschilderwerk voor een frisse uitstraling en
-                een verzorgde afwerking.
-              </p>
-
-              <Link
-                href="/schilderwerk"
-                className="mt-5 inline-block font-semibold text-blue-700 hover:text-blue-900"
-              >
-                Bekijk schilderwerk →
-              </Link>
-            </div>
-
-            <div className="rounded-2xl bg-white p-7 shadow-sm">
-              <h3 className="text-xl font-bold text-slate-900">
-                Badkamerrenovatie
-              </h3>
-
-              <p className="mt-3 leading-7 text-slate-600">
-                Een bestaande badkamer vernieuwen en de ruimte praktisch en
-                verzorgd laten afwerken.
-              </p>
-
-              <Link
-                href="/badkamer-renovatie"
-                className="mt-5 inline-block font-semibold text-blue-700 hover:text-blue-900"
-              >
-                Bekijk badkamerrenovatie →
-              </Link>
-            </div>
-
-            <div className="rounded-2xl bg-white p-7 shadow-sm">
-              <h3 className="text-xl font-bold text-slate-900">
-                Vloeren leggen
-              </h3>
-
-              <p className="mt-3 leading-7 text-slate-600">
-                Het plaatsen van vloerafwerkingen zoals laminaat en andere
-                vloeren.
-              </p>
-
-              <Link
-                href="/vloeren"
-                className="mt-5 inline-block font-semibold text-blue-700 hover:text-blue-900"
-              >
-                Bekijk vloeren →
-              </Link>
-            </div>
-
-            <div className="rounded-2xl bg-white p-7 shadow-sm">
-              <h3 className="text-xl font-bold text-slate-900">
-                Zolderrenovatie
-              </h3>
-
-              <p className="mt-3 leading-7 text-slate-600">
-                Een zolder renoveren en de beschikbare ruimte praktischer en
-                comfortabeler maken.
-              </p>
-
-              <Link
-                href="/zolder-renovatie"
-                className="mt-5 inline-block font-semibold text-blue-700 hover:text-blue-900"
-              >
-                Bekijk zolderrenovatie →
-              </Link>
-            </div>
-
-            <div className="rounded-2xl bg-white p-7 shadow-sm">
-              <h3 className="text-xl font-bold text-slate-900">
-                Isolatie
-              </h3>
-
-              <p className="mt-3 leading-7 text-slate-600">
-                Isolatiewerkzaamheden voor een comfortabeler en energiezuiniger
-                huis.
-              </p>
-
-              <Link
-                href="/isolatie"
-                className="mt-5 inline-block font-semibold text-blue-700 hover:text-blue-900"
-              >
-                Bekijk isolatie →
-              </Link>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Approach */}
-      <section className="px-6 py-20">
+      <section className="px-6 py-20 md:py-24">
         <div className="mx-auto max-w-5xl">
-          <h2 className="text-3xl font-bold text-slate-900 md:text-4xl">
-            Zo pakken we uw project aan
-          </h2>
+          <div className="text-center">
+            <p className="font-semibold uppercase tracking-[4px] text-blue-600">
+              ONZE WERKWIJZE
+            </p>
 
-          <p className="mt-6 max-w-4xl text-lg leading-8 text-slate-700">
-            Bij een renovatie of verbouwing is een goede voorbereiding
-            belangrijk. We bespreken uw wensen en de werkzaamheden en kijken
-            samen naar een praktische aanpak voor het project.
-          </p>
+            <h2 className="mt-4 text-4xl font-black text-slate-900 md:text-5xl">
+              Zo pakken we uw project aan
+            </h2>
 
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
-            <div className="rounded-2xl border border-slate-200 p-7">
-              <p className="text-sm font-bold uppercase tracking-wider text-blue-700">
-                Stap 1
-              </p>
+            <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-600">
+              Bij een renovatie of verbouwing bespreken we vooraf wat er
+              nodig is en stemmen we de werkzaamheden af op uw woning en
+              project.
+            </p>
+          </div>
 
-              <h3 className="mt-3 text-xl font-bold text-slate-900">
+          <div className="mt-14 grid gap-8 md:grid-cols-3">
+            <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+              <div className="text-3xl font-black text-blue-700">
+                01
+              </div>
+
+              <h3 className="mt-5 text-2xl font-bold text-slate-900">
                 Bespreken
               </h3>
 
-              <p className="mt-3 leading-7 text-slate-600">
+              <p className="mt-4 leading-7 text-slate-600">
                 We bespreken uw wensen en bepalen welke werkzaamheden nodig
                 zijn.
               </p>
             </div>
 
-            <div className="rounded-2xl border border-slate-200 p-7">
-              <p className="text-sm font-bold uppercase tracking-wider text-blue-700">
-                Stap 2
-              </p>
+            <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+              <div className="text-3xl font-black text-blue-700">
+                02
+              </div>
 
-              <h3 className="mt-3 text-xl font-bold text-slate-900">
+              <h3 className="mt-5 text-2xl font-bold text-slate-900">
                 Voorbereiden
               </h3>
 
-              <p className="mt-3 leading-7 text-slate-600">
+              <p className="mt-4 leading-7 text-slate-600">
                 We bekijken de gewenste werkzaamheden en afwerking van het
                 project.
               </p>
             </div>
 
-            <div className="rounded-2xl border border-slate-200 p-7">
-              <p className="text-sm font-bold uppercase tracking-wider text-blue-700">
-                Stap 3
-              </p>
+            <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+              <div className="text-3xl font-black text-blue-700">
+                03
+              </div>
 
-              <h3 className="mt-3 text-xl font-bold text-slate-900">
+              <h3 className="mt-5 text-2xl font-bold text-slate-900">
                 Uitvoeren
               </h3>
 
-              <p className="mt-3 leading-7 text-slate-600">
+              <p className="mt-4 leading-7 text-slate-600">
                 We voeren de werkzaamheden zorgvuldig uit met aandacht voor
                 een nette eindafwerking.
               </p>
@@ -259,114 +285,154 @@ export default function BemmelPage() {
       </section>
 
       {/* Why us */}
-      <section className="bg-slate-50 px-6 py-20">
+      <section className="bg-slate-50 px-6 py-20 md:py-24">
         <div className="mx-auto max-w-5xl">
-          <h2 className="text-3xl font-bold text-slate-900 md:text-4xl">
-            Waarom M.S. Kracht Klusbedrijf?
-          </h2>
+          <div className="text-center">
+            <p className="font-semibold uppercase tracking-[4px] text-blue-600">
+              ONZE AANPAK
+            </p>
 
-          <div className="mt-10 grid gap-6 md:grid-cols-2">
-            <div className="rounded-2xl bg-white p-7 shadow-sm">
-              <h3 className="text-xl font-bold text-slate-900">
-                Persoonlijke aanpak
-              </h3>
+            <h2 className="mt-4 text-4xl font-black text-slate-900 md:text-5xl">
+              Waarom M.S. Kracht Klusbedrijf?
+            </h2>
+          </div>
 
-              <p className="mt-3 leading-7 text-slate-600">
-                We luisteren naar uw wensen en bespreken vooraf duidelijk wat
-                er moet gebeuren.
-              </p>
-            </div>
+          <div className="mt-14 grid gap-6 md:grid-cols-2">
+            {benefits.map((benefit) => (
+              <div
+                key={benefit.title}
+                className="rounded-3xl bg-white p-8 shadow-sm"
+              >
+                <div className="flex items-start gap-4">
+                  <CheckCircle
+                    size={23}
+                    className="mt-1 shrink-0 text-blue-700"
+                  />
 
-            <div className="rounded-2xl bg-white p-7 shadow-sm">
-              <h3 className="text-xl font-bold text-slate-900">
-                Nette afwerking
-              </h3>
+                  <div>
+                    <h3 className="text-xl font-bold text-slate-900">
+                      {benefit.title}
+                    </h3>
 
-              <p className="mt-3 leading-7 text-slate-600">
-                We werken zorgvuldig en besteden aandacht aan de details van
-                het project.
-              </p>
-            </div>
-
-            <div className="rounded-2xl bg-white p-7 shadow-sm">
-              <h3 className="text-xl font-bold text-slate-900">
-                Verschillende diensten
-              </h3>
-
-              <p className="mt-3 leading-7 text-slate-600">
-                Renovatie, schilderwerk, vloeren, badkamers, isolatie en
-                zolderrenovatie kunnen onderdeel zijn van één project.
-              </p>
-            </div>
-
-            <div className="rounded-2xl bg-white p-7 shadow-sm">
-              <h3 className="text-xl font-bold text-slate-900">
-                Actief in Bemmel
-              </h3>
-
-              <p className="mt-3 leading-7 text-slate-600">
-                Vanuit Elst zijn wij actief in Bemmel en verschillende
-                omliggende plaatsen.
-              </p>
-            </div>
+                    <p className="mt-3 leading-7 text-slate-600">
+                      {benefit.text}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Projects */}
-      <section className="bg-slate-950 px-6 py-20 text-white">
+      <section className="bg-slate-950 px-6 py-20 text-white md:py-24">
         <div className="mx-auto max-w-5xl">
-          <h2 className="text-3xl font-bold md:text-4xl">
+          <p className="font-semibold uppercase tracking-[4px] text-blue-400">
+            UITGEVOERD WERK
+          </p>
+
+          <h2 className="mt-4 text-4xl font-black md:text-5xl">
             Bekijk onze projecten
           </h2>
 
-          <p className="mt-5 max-w-3xl text-lg leading-8 text-gray-300">
-            Bekijk voorbeelden van gerealiseerde renovaties, verbouwingen en
-            andere werkzaamheden van M.S. Kracht Klusbedrijf.
+          <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-300">
+            Bekijk voorbeelden van gerealiseerde renovaties, verbouwingen
+            en andere werkzaamheden van M.S. Kracht Klusbedrijf.
           </p>
 
-          <Link
-            href="/projecten"
-            className="mt-8 inline-block rounded-xl bg-blue-600 px-7 py-4 font-semibold transition hover:bg-blue-700"
-          >
-            Bekijk alle projecten
-          </Link>
+          <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
+            <Link
+              href="/projecten"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-8 py-4 font-bold transition hover:bg-blue-700"
+            >
+              Bekijk alle projecten
+              <ArrowRight size={20} />
+            </Link>
+
+            <Link
+              href="/projecten/stucwerk-schilderwerk"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-white px-8 py-4 font-semibold transition hover:bg-white hover:text-slate-950"
+            >
+              Stucwerk & schilderwerk
+              <ArrowRight size={18} />
+            </Link>
+
+            <Link
+              href="/projecten/tegelwerk"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-white px-8 py-4 font-semibold transition hover:bg-white hover:text-slate-950"
+            >
+              Tegelwerk
+              <ArrowRight size={18} />
+            </Link>
+          </div>
         </div>
       </section>
 
-      {/* Contact */}
-      <section className="px-6 py-20">
-        <div className="mx-auto max-w-5xl rounded-3xl bg-blue-50 p-8 md:p-12">
-          <h2 className="text-3xl font-bold text-slate-900 md:text-4xl">
-            Heeft u een klus in Bemmel?
+      {/* Nearby areas */}
+      <section className="px-6 py-20 md:py-24">
+        <div className="mx-auto max-w-5xl text-center">
+          <p className="font-semibold uppercase tracking-[4px] text-blue-600">
+            BEMMEL EN OMGEVING
+          </p>
+
+          <h2 className="mt-4 text-4xl font-black text-slate-900 md:text-5xl">
+            Ook actief in omliggende plaatsen
           </h2>
 
-          <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-700">
-            Heeft u plannen voor een renovatie, verbouwing, schilderwerk,
-            nieuwe vloer, badkamerrenovatie, zolderrenovatie of isolatie?
-            Neem contact op met M.S. Kracht Klusbedrijf voor meer informatie
-            of een vrijblijvende offerte.
+          <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-600">
+            Vanuit Elst werkt M.S. Kracht Klusbedrijf ook in verschillende
+            omliggende plaatsen.
           </p>
 
-          <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+          <div className="mt-10 flex flex-wrap justify-center gap-3">
+            {nearbyAreas.map((area) => (
+              <Link
+                key={area.name}
+                href={area.href}
+                className="rounded-xl bg-slate-100 px-6 py-3 font-semibold text-slate-800 transition hover:bg-blue-100 hover:text-blue-800"
+              >
+                Klusbedrijf {area.name}
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="bg-blue-50 px-6 py-20 md:py-24">
+        <div className="mx-auto max-w-4xl text-center">
+          <p className="font-semibold uppercase tracking-[4px] text-blue-600">
+            KLUS IN BEMMEL?
+          </p>
+
+          <h2 className="mt-4 text-4xl font-black text-slate-900 md:text-5xl">
+            Renovatie of verbouwing gepland?
+          </h2>
+
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-600">
+            Heeft u plannen voor renovatie, verbouwing, schilderwerk,
+            een nieuwe vloer, badkamer, zolder of isolatie? Bespreek uw
+            project met M.S. Kracht Klusbedrijf.
+          </p>
+
+          <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
+            <Link
+              href="/#contact"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-8 py-4 text-lg font-bold text-white shadow-lg transition duration-300 hover:-translate-y-1 hover:bg-blue-700 hover:shadow-xl"
+            >
+              Vraag vrijblijvend een offerte aan
+              <ArrowRight size={21} />
+            </Link>
+
             <a
               href="tel:+31643680281"
-              className="rounded-xl bg-blue-600 px-7 py-4 text-center font-semibold text-white transition hover:bg-blue-700"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-slate-300 bg-white px-8 py-4 text-lg font-bold text-slate-800 transition duration-300 hover:border-blue-600 hover:text-blue-700"
             >
-              06 43680281
-            </a>
-
-            <a
-              href="mailto:info@krachtklusbedrijf-ms.nl"
-              className="rounded-xl border border-slate-300 bg-white px-7 py-4 text-center font-semibold text-slate-900 transition hover:bg-slate-100"
-            >
-              info@krachtklusbedrijf-ms.nl
+              <Phone size={20} />
+              Bel direct
             </a>
           </div>
-
-          <p className="mt-8 text-sm leading-6 text-slate-600">
-            Koningin Wilhelminastraat 73, 6661 VW Elst
-          </p>
         </div>
       </section>
     </main>
