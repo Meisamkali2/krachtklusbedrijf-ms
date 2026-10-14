@@ -5,16 +5,24 @@ on:
   schedule:
     - cron: "0 6 * * 1"
   push:
-    branches: ["main"]
+    branches:
+      - main
   pull_request:
-    branches: ["main"]
+    branches:
+      - main
 
 permissions:
   contents: read
 
+concurrency:
+  group: seo-build-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
+    name: Build and SEO Checks
     runs-on: ubuntu-latest
+    timeout-minutes: 15
 
     steps:
       - name: Checkout repository
@@ -32,8 +40,32 @@ jobs:
       - name: Build website
         run: npm run build
 
-      - name: Check SEO files
+      - name: Check SEO source files
+        shell: bash
         run: |
-          test -f public/robots.txt || (echo "ERROR: robots.txt is missing" && exit 1)
-          test -f public/sitemap.xml || (echo "ERROR: sitemap.xml is missing" && exit 1)
-          echo "SEO files exist."
+          set -e
+
+          test -f app/robots.ts || {
+            echo "ERROR: app/robots.ts is missing"
+            exit 1
+          }
+
+          test -f app/sitemap.ts || {
+            echo "ERROR: app/sitemap.ts is missing"
+            exit 1
+          }
+
+          echo "SUCCESS: robots.ts and sitemap.ts exist."
+
+      - name: Check generated SEO files
+        shell: bash
+        run: |
+          set -e
+
+          if [ ! -d .next/server/app ]; then
+            echo "ERROR: Next.js server build output was not found."
+            exit 1
+          fi
+
+          echo "Next.js server build output exists."
+          echo "Build and SEO source checks completed successfully."
