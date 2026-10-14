@@ -1,0 +1,39 @@
+name: Website SEO and Build Check
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 6 * * 1"
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build website
+        run: npm run build
+
+      - name: Check SEO files
+        run: |
+          test -f public/robots.txt || (echo "ERROR: robots.txt is missing" && exit 1)
+          test -f public/sitemap.xml || (echo "ERROR: sitemap.xml is missing" && exit 1)
+          echo "SEO files exist."
