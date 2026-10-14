@@ -2,11 +2,14 @@ name: Website SEO and Build Check
 
 on:
   workflow_dispatch:
+
   schedule:
     - cron: "0 6 * * 1"
+
   push:
     branches:
       - main
+
   pull_request:
     branches:
       - main
@@ -55,17 +58,84 @@ jobs:
             exit 1
           }
 
-          echo "SUCCESS: robots.ts and sitemap.ts exist."
+          echo "SUCCESS: SEO source files exist."
 
-      - name: Check generated SEO files
+      - name: Check Next.js build output
         shell: bash
         run: |
           set -e
 
-          if [ ! -d .next/server/app ]; then
+          test -d .next/server/app || {
             echo "ERROR: Next.js server build output was not found."
+            exit 1
+          }
+
+          echo "SUCCESS: Next.js build output exists."
+
+      - name: Check live website pages
+        shell: bash
+        run: |
+          set -u
+
+          BASE_URL="https://www.krachtklusbedrijf-ms.nl"
+
+          PAGES=(
+            "/"
+            "/elst"
+            "/renovatie"
+            "/schilderwerk"
+            "/vloeren"
+            "/badkamer-renovatie"
+            "/isolatie"
+            "/zolder-renovatie"
+            "/arnhem"
+            "/nijmegen"
+            "/bemmel"
+            "/huissen"
+            "/lent"
+            "/oosterbeek"
+            "/projecten"
+          )
+
+          FAILED=0
+
+          for PAGE in "${PAGES[@]}"; do
+            URL="${BASE_URL}${PAGE}"
+
+            STATUS=$(curl -sS -L \
+              --max-time 20 \
+              -o /dev/null \
+              -w "%{http_code}" \
+              "$URL") || STATUS="000"
+
+            if [ "$STATUS" = "200" ]; then
+              echo "PASS: $URL ($STATUS)"
+            else
+              echo "FAIL: $URL ($STATUS)"
+              FAILED=1
+            fi
+          done
+
+          for FILE in robots.txt sitemap.xml; do
+            URL="${BASE_URL}/${FILE}"
+
+            STATUS=$(curl -sS -L \
+              --max-time 20 \
+              -o /dev/null \
+              -w "%{http_code}" \
+              "$URL") || STATUS="000"
+
+            if [ "$STATUS" = "200" ]; then
+              echo "PASS: $URL ($STATUS)"
+            else
+              echo "FAIL: $URL ($STATUS)"
+              FAILED=1
+            fi
+          done
+
+          if [ "$FAILED" -ne 0 ]; then
+            echo "ERROR: One or more live website checks failed."
             exit 1
           fi
 
-          echo "Next.js server build output exists."
-          echo "Build and SEO source checks completed successfully."
+          echo "SUCCESS: All live website checks passed."
