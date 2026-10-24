@@ -4,7 +4,7 @@ import Script from "next/script";
 import "./globals.css";
 import schema from "./schema";
 
-const GA_MEASUREMENT_ID = "G-S6Q6BW4DQ0";
+const GA_MEASUREMENT_ID = "G-S6Q6BW4DQQ";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
