@@ -1,4 +1,4 @@
-```tsx
+
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
@@ -112,7 +112,6 @@ export default function RootLayout({
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){window.dataLayer.push(arguments);}
-            window.gtag = gtag;
             gtag('js', new Date());
             gtag('config', '${GA_MEASUREMENT_ID}');
           `}
