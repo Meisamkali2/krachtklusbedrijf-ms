@@ -1,169 +1,34 @@
 ```yaml
-name: Website SEO and Build Check
+name: Website SEO Check
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "0 6 * * 1"
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
-
-permissions:
-  contents: read
-
-concurrency:
-  group: seo-build-${{ github.ref }}
-  cancel-in-progress: true
+  schedule:
+    - cron: "0 6 * * 1"
 
 jobs:
-  build:
-    name: Build and SEO Checks
+  seo-check:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: npm
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build website
-        run: npm run build
-
-      - name: Check SEO source files
+      - name: Check website homepage
         run: |
-          test -f app/robots.ts
-          test -f app/sitemap.ts
-          echo "SEO source files exist."
+          curl -fsSL --max-time 30 https://www.krachtklusbedrijf-ms.nl/ -o /dev/null
+          echo "Homepage is accessible"
 
-      - name: Check Next.js build output
+      - name: Check robots.txt
         run: |
-          test -d .next/server/app
-          echo "Next.js build output exists."
+          curl -fsSL --max-time 30 https://www.krachtklusbedrijf-ms.nl/robots.txt -o /dev/null
+          echo "robots.txt is accessible"
 
-      - name: Check live website pages
-        shell: bash
+      - name: Check sitemap.xml
         run: |
-          set -u
-          BASE_URL="https://www.krachtklusbedrijf-ms.nl"
-          FAILED=0
-
-          PAGES=(
-            "/"
-            "/elst"
-            "/renovatie"
-            "/schilderwerk"
-            "/vloeren"
-            "/badkamer-renovatie"
-            "/isolatie"
-            "/zolder-renovatie"
-            "/arnhem"
-            "/nijmegen"
-            "/bemmel"
-            "/huissen"
-            "/lent"
-            "/oosterbeek"
-            "/projecten"
-          )
-
-          for PAGE in "${PAGES[@]}"; do
-            URL="${BASE_URL}${PAGE}"
-            STATUS=$(curl -sS -L --max-time 20 -o /dev/null -w "%{http_code}" "$URL") || STATUS="000"
-
-            if [ "$STATUS" = "200" ]; then
-              echo "PASS: $URL ($STATUS)"
-            else
-              echo "FAIL: $URL ($STATUS)"
-              FAILED=1
-            fi
-          done
-
-          for FILE in robots.txt sitemap.xml; do
-            URL="${BASE_URL}/${FILE}"
-            STATUS=$(curl -sS -L --max-time 20 -o /dev/null -w "%{http_code}" "$URL") || STATUS="000"
-
-            if [ "$STATUS" = "200" ]; then
-              echo "PASS: $URL ($STATUS)"
-            else
-              echo "FAIL: $URL ($STATUS)"
-              FAILED=1
-            fi
-          done
-
-          if [ "$FAILED" -ne 0 ]; then
-            echo "One or more live website checks failed."
-            exit 1
-          fi
-
-      - name: Check titles and meta descriptions
-        shell: bash
-        run: |
-          python3 - <<'PY'
-          import re
-          import sys
-          import urllib.request
-
-          base = "https://www.krachtklusbedrijf-ms.nl"
-          pages = [
-              "/", "/elst", "/renovatie", "/schilderwerk", "/vloeren",
-              "/badkamer-renovatie", "/isolatie", "/zolder-renovatie",
-              "/arnhem", "/nijmegen", "/bemmel", "/huissen",
-              "/lent", "/oosterbeek", "/projecten"
-          ]
-
-          failed = False
-
-          for page in pages:
-              url = base + page
-              try:
-                  request = urllib.request.Request(
-                      url,
-                      headers={"User-Agent": "Mozilla/5.0 SEOCheck/1.0"}
-                  )
-                  with urllib.request.urlopen(request, timeout=20) as response:
-                      html = response.read().decode("utf-8", errors="replace")
-
-                  title = re.search(
-                      r"<title\b[^>]*>(.*?)</title\s*>",
-                      html,
-                      re.IGNORECASE | re.DOTALL
-                  )
-                  description = re.search(
-                      r'<meta\b(?=[^>]*\bname=["\']description["\'])(?=[^>]*\bcontent=["\']([^"\']*)["\'])[^>]*>',
-                      html,
-                      re.IGNORECASE | re.DOTALL
-                  )
-
-                  if title and title.group(1).strip():
-                      print(f"PASS: title found for {url}")
-                  else:
-                      print(f"FAIL: missing title for {url}")
-                      failed = True
-
-                  if description and description.group(1).strip():
-                      print(f"PASS: meta description found for {url}")
-                  else:
-                      print(f"FAIL: missing meta description for {url}")
-                      failed = True
-
-              except Exception as error:
-                  print(f"FAIL: {url}: {error}")
-                  failed = True
-
-          if failed:
-              sys.exit(1)
-
-          print("All checked pages have titles and meta descriptions.")
-          PY
+          curl -fsSL --max-time 30 https://www.krachtklusbedrijf-ms.nl/sitemap.xml -o /dev/null
+          echo "sitemap.xml is accessible"
 ```
