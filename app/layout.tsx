@@ -1,7 +1,11 @@
+```tsx
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import schema from "./schema";
+
+const GA_MEASUREMENT_ID = "G-S6Q6BW4DQ0";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -64,8 +68,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "M.S. Kracht Klusbedrijf",
-    description:
-      "Klusbedrijf voor renovatie en verbouwing in Gelderland.",
+    description: "Klusbedrijf voor renovatie en verbouwing in Gelderland.",
     images: ["/images/og-image.jpg"],
   },
 
@@ -100,8 +103,24 @@ export default function RootLayout({
           }}
         />
 
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){window.dataLayer.push(arguments);}
+            window.gtag = gtag;
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}');
+          `}
+        </Script>
+
         {children}
       </body>
     </html>
   );
 }
+```
