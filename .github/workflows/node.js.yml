@@ -3,14 +3,11 @@ name: Website SEO and Build Check
 
 on:
   workflow_dispatch:
-
   schedule:
     - cron: "0 6 * * 1"
-
   push:
     branches:
       - main
-
   pull_request:
     branches:
       - main
@@ -45,40 +42,22 @@ jobs:
         run: npm run build
 
       - name: Check SEO source files
-        shell: bash
         run: |
-          set -e
-
-          test -f app/robots.ts || {
-            echo "ERROR: app/robots.ts is missing"
-            exit 1
-          }
-
-          test -f app/sitemap.ts || {
-            echo "ERROR: app/sitemap.ts is missing"
-            exit 1
-          }
-
-          echo "SUCCESS: SEO source files exist."
+          test -f app/robots.ts
+          test -f app/sitemap.ts
+          echo "SEO source files exist."
 
       - name: Check Next.js build output
-        shell: bash
         run: |
-          set -e
-
-          test -d .next/server/app || {
-            echo "ERROR: Next.js server build output was not found."
-            exit 1
-          }
-
-          echo "SUCCESS: Next.js build output exists."
+          test -d .next/server/app
+          echo "Next.js build output exists."
 
       - name: Check live website pages
         shell: bash
         run: |
           set -u
-
           BASE_URL="https://www.krachtklusbedrijf-ms.nl"
+          FAILED=0
 
           PAGES=(
             "/"
@@ -98,16 +77,9 @@ jobs:
             "/projecten"
           )
 
-          FAILED=0
-
           for PAGE in "${PAGES[@]}"; do
             URL="${BASE_URL}${PAGE}"
-
-            STATUS=$(curl -sS -L \
-              --max-time 20 \
-              -o /dev/null \
-              -w "%{http_code}" \
-              "$URL") || STATUS="000"
+            STATUS=$(curl -sS -L --max-time 20 -o /dev/null -w "%{http_code}" "$URL") || STATUS="000"
 
             if [ "$STATUS" = "200" ]; then
               echo "PASS: $URL ($STATUS)"
@@ -119,12 +91,7 @@ jobs:
 
           for FILE in robots.txt sitemap.xml; do
             URL="${BASE_URL}/${FILE}"
-
-            STATUS=$(curl -sS -L \
-              --max-time 20 \
-              -o /dev/null \
-              -w "%{http_code}" \
-              "$URL") || STATUS="000"
+            STATUS=$(curl -sS -L --max-time 20 -o /dev/null -w "%{http_code}" "$URL") || STATUS="000"
 
             if [ "$STATUS" = "200" ]; then
               echo "PASS: $URL ($STATUS)"
@@ -135,72 +102,68 @@ jobs:
           done
 
           if [ "$FAILED" -ne 0 ]; then
-            echo "ERROR: One or more live website checks failed."
+            echo "One or more live website checks failed."
             exit 1
           fi
 
-          echo "SUCCESS: All live website pages are accessible."
-
-      - name: Check page titles and meta descriptions
+      - name: Check titles and meta descriptions
         shell: bash
         run: |
-          set -u
+          python3 - <<'PY'
+          import re
+          import sys
+          import urllib.request
 
-          BASE_URL="https://www.krachtklusbedrijf-ms.nl"
+          base = "https://www.krachtklusbedrijf-ms.nl"
+          pages = [
+              "/", "/elst", "/renovatie", "/schilderwerk", "/vloeren",
+              "/badkamer-renovatie", "/isolatie", "/zolder-renovatie",
+              "/arnhem", "/nijmegen", "/bemmel", "/huissen",
+              "/lent", "/oosterbeek", "/projecten"
+          ]
 
-          PAGES=(
-            "/"
-            "/elst"
-            "/renovatie"
-            "/schilderwerk"
-            "/vloeren"
-            "/badkamer-renovatie"
-            "/isolatie"
-            "/zolder-renovatie"
-            "/arnhem"
-            "/nijmegen"
-            "/bemmel"
-            "/huissen"
-            "/lent"
-            "/oosterbeek"
-            "/projecten"
-          )
+          failed = False
 
-          FAILED=0
+          for page in pages:
+              url = base + page
+              try:
+                  request = urllib.request.Request(
+                      url,
+                      headers={"User-Agent": "Mozilla/5.0 SEOCheck/1.0"}
+                  )
+                  with urllib.request.urlopen(request, timeout=20) as response:
+                      html = response.read().decode("utf-8", errors="replace")
 
-          for PAGE in "${PAGES[@]}"; do
-            URL="${BASE_URL}${PAGE}"
-            HTML_FILE=$(mktemp)
+                  title = re.search(
+                      r"<title\b[^>]*>(.*?)</title\s*>",
+                      html,
+                      re.IGNORECASE | re.DOTALL
+                  )
+                  description = re.search(
+                      r'<meta\b(?=[^>]*\bname=["\']description["\'])(?=[^>]*\bcontent=["\']([^"\']*)["\'])[^>]*>',
+                      html,
+                      re.IGNORECASE | re.DOTALL
+                  )
 
-            if ! curl -fsSL --max-time 20 "$URL" -o "$HTML_FILE"; then
-              echo "FAIL: Could not download HTML for $URL"
-              FAILED=1
-              rm -f "$HTML_FILE"
-              continue
-            fi
+                  if title and title.group(1).strip():
+                      print(f"PASS: title found for {url}")
+                  else:
+                      print(f"FAIL: missing title for {url}")
+                      failed = True
 
-            if grep -Eiq '<title[^>]*>[^<]{1,}</title>' "$HTML_FILE"; then
-              echo "PASS: Title found for $URL"
-            else
-              echo "FAIL: Missing or empty title for $URL"
-              FAILED=1
-            fi
+                  if description and description.group(1).strip():
+                      print(f"PASS: meta description found for {url}")
+                  else:
+                      print(f"FAIL: missing meta description for {url}")
+                      failed = True
 
-            if grep -Eiq '<meta[^>]+name=["\x27]description["\x27][^>]+content=["\x27][^"\x27]{1,}' "$HTML_FILE" ||
-               grep -Eiq '<meta[^>]+content=["\x27][^"\x27]{1,}["\x27][^>]+name=["\x27]description["\x27]' "$HTML_FILE"; then
-              echo "PASS: Meta description found for $URL"
-            else
-              echo "FAIL: Missing or empty meta description for $URL"
-              FAILED=1
-            fi
+              except Exception as error:
+                  print(f"FAIL: {url}: {error}")
+                  failed = True
 
-            rm -f "$HTML_FILE"
-          done
+          if failed:
+              sys.exit(1)
 
-          if [ "$FAILED" -ne 0 ]; then
-            echo "ERROR: Some pages may need SEO metadata review."
-            exit 1
-          fi
-
-          echo "SUCCESS: Titles and meta descriptions were detected on all checked pages."
+          print("All checked pages have titles and meta descriptions.")
+          PY
 ```
