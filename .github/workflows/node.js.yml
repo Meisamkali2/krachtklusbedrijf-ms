@@ -1,3 +1,4 @@
+```yaml
 name: Website SEO and Build Check
 
 on:
@@ -25,7 +26,7 @@ jobs:
   build:
     name: Build and SEO Checks
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
 
     steps:
       - name: Checkout repository
@@ -138,4 +139,68 @@ jobs:
             exit 1
           fi
 
-          echo "SUCCESS: All live website checks passed."
+          echo "SUCCESS: All live website pages are accessible."
+
+      - name: Check page titles and meta descriptions
+        shell: bash
+        run: |
+          set -u
+
+          BASE_URL="https://www.krachtklusbedrijf-ms.nl"
+
+          PAGES=(
+            "/"
+            "/elst"
+            "/renovatie"
+            "/schilderwerk"
+            "/vloeren"
+            "/badkamer-renovatie"
+            "/isolatie"
+            "/zolder-renovatie"
+            "/arnhem"
+            "/nijmegen"
+            "/bemmel"
+            "/huissen"
+            "/lent"
+            "/oosterbeek"
+            "/projecten"
+          )
+
+          FAILED=0
+
+          for PAGE in "${PAGES[@]}"; do
+            URL="${BASE_URL}${PAGE}"
+            HTML_FILE=$(mktemp)
+
+            if ! curl -fsSL --max-time 20 "$URL" -o "$HTML_FILE"; then
+              echo "FAIL: Could not download HTML for $URL"
+              FAILED=1
+              rm -f "$HTML_FILE"
+              continue
+            fi
+
+            if grep -Eiq '<title[^>]*>[^<]{1,}</title>' "$HTML_FILE"; then
+              echo "PASS: Title found for $URL"
+            else
+              echo "FAIL: Missing or empty title for $URL"
+              FAILED=1
+            fi
+
+            if grep -Eiq '<meta[^>]+name=["\x27]description["\x27][^>]+content=["\x27][^"\x27]{1,}' "$HTML_FILE" ||
+               grep -Eiq '<meta[^>]+content=["\x27][^"\x27]{1,}["\x27][^>]+name=["\x27]description["\x27]' "$HTML_FILE"; then
+              echo "PASS: Meta description found for $URL"
+            else
+              echo "FAIL: Missing or empty meta description for $URL"
+              FAILED=1
+            fi
+
+            rm -f "$HTML_FILE"
+          done
+
+          if [ "$FAILED" -ne 0 ]; then
+            echo "ERROR: Some pages may need SEO metadata review."
+            exit 1
+          fi
+
+          echo "SUCCESS: Titles and meta descriptions were detected on all checked pages."
+```
