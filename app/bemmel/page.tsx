@@ -7,7 +7,7 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Klusbedrijf Bemmel | Renovatie & Verbouwing | M.S. Kracht",
+  title: "Klusbedrijf in Bemmel",
   description:
     "Klusbedrijf in Bemmel voor renovatie, verbouwing, schilderwerk, vloeren, badkamerrenovatie, zolderrenovatie en isolatie. Vraag vrijblijvend een offerte aan.",
   alternates: {
