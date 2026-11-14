@@ -7,7 +7,7 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Klusbedrijf Arnhem | Renovatie & Verbouwing | M.S. Kracht",
+  title: "Klusbedrijf in Arnhem",
   description:
     "Klusbedrijf in Arnhem voor renovatie, verbouwing, schilderwerk, vloeren, badkamerrenovatie, zolderrenovatie en isolatie. Vraag vrijblijvend een offerte aan.",
   alternates: {
