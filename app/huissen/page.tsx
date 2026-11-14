@@ -7,7 +7,7 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Klusbedrijf Huissen | Renovatie & Verbouwing | M.S. Kracht",
+  title: "Klusbedrijf in Huissen",
   description:
     "Klusbedrijf in Huissen voor renovatie, verbouwing, schilderwerk, vloeren, badkamerrenovatie, zolderrenovatie en isolatie. Vraag vrijblijvend een offerte aan.",
   alternates: {
