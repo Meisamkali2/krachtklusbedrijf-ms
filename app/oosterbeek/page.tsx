@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Klusbedrijf Oosterbeek | Renovatie & Verbouwing | M.S. Kracht",
+  title: "Klusbedrijf in Oosterbeek",
   description:
     "Klusbedrijf in Oosterbeek voor renovatie, verbouwing, schilderwerk, vloeren, badkamerrenovatie, zolderrenovatie en isolatie. Vraag vrijblijvend een offerte aan.",
   alternates: {
