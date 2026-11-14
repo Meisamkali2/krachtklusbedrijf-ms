@@ -4,7 +4,8 @@ import { ArrowRight, CheckCircle, Phone } from "lucide-react";
 import ServiceLayout from "../components/services/ServiceLayout";
 
 export const metadata: Metadata = {
-  title: "Vloeren Leggen in Elst | M.S. Kracht Klusbedrijf",
+  title: "Vloeren leggen in Elst",
+  alternates: { canonical: "/vloeren" },
   description:
     "Vloeren leggen en vernieuwen in Elst en omgeving. M.S. Kracht Klusbedrijf helpt met laminaat en andere vloerwerkzaamheden voor woningen en panden.",
 };
