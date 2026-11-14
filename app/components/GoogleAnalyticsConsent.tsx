@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import {
   ANALYTICS_CONSENT_KEY,
-  ANALYTICS_CONSENT_MAX_AGE_MS,
   readAnalyticsConsent,
   trackAnalyticsEvent,
 } from "../lib/analytics";
@@ -14,7 +13,12 @@ const GA_MEASUREMENT_ID = "G-S6Q6BW4DQQ";
 const GOOGLE_TAG_SCRIPT_ID = "google-analytics-script";
 
 function loadGoogleAnalytics() {
-  if (typeof window === "undefined" || window.gtag) return;
+  if (typeof window === "undefined") return;
+
+  if (window.gtag) {
+    window.gtag("consent", "update", { analytics_storage: "granted" });
+    return;
+  }
 
   window.dataLayer = window.dataLayer || [];
   window.gtag = (...args: unknown[]) => {
@@ -129,6 +133,7 @@ export default function GoogleAnalyticsConsent() {
     );
 
     if (accepted) {
+      loadGoogleAnalytics();
       setAnalyticsEnabled(true);
     } else {
       window.gtag?.("consent", "update", { analytics_storage: "denied" });
