@@ -9,6 +9,8 @@ import {
   Navigation,
 } from "lucide-react";
 import { useState } from "react";
+import GoogleMapEmbed from "./GoogleMapEmbed";
+import { trackAnalyticsEvent } from "../lib/analytics";
 
 export default function Contact() {
   const [status, setStatus] = useState("");
@@ -52,6 +54,11 @@ export default function Contact() {
       }
 
       setSuccess(true);
+      trackAnalyticsEvent("generate_lead", {
+        method: "website_form",
+        form_name: "quote_request",
+        page_path: window.location.pathname,
+      });
 
       setStatus(
         result.message ||
@@ -181,15 +188,7 @@ export default function Contact() {
 
             {/* MAP */}
             <div className="overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-xl">
-              <iframe
-                src="https://www.google.com/maps?q=Koningin+Wilhelminastraat+73,+6661+VW+Elst,+Nederland&output=embed"
-                width="100%"
-                height="340"
-                loading="lazy"
-                className="border-0"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Google Maps - M.S. Kracht Klusbedrijf"
-              />
+              <GoogleMapEmbed />
             </div>
 
             {/* QUICK ACTIONS */}
