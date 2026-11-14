@@ -4,7 +4,8 @@ import { ArrowRight, CheckCircle, Phone } from "lucide-react";
 import ServiceLayout from "../components/services/ServiceLayout";
 
 export const metadata: Metadata = {
-  title: "Schilderwerk in Elst | M.S. Kracht Klusbedrijf",
+  title: "Schilderwerk in Elst",
+  alternates: { canonical: "/schilderwerk" },
   description:
     "Schilderwerk in Elst en omgeving voor woningen en panden. Binnen- en buitenschilderwerk, muren, plafonds, deuren en kozijnen.",
 };

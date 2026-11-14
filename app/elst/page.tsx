@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Klusbedrijf Elst | Renovatie & Verbouwing | M.S. Kracht",
+  title: "Klusbedrijf in Elst",
   description:
     "Klusbedrijf in Elst voor renovatie, verbouwing, schilderwerk, vloeren, badkamerrenovatie, zolderrenovatie en isolatie. Vraag vrijblijvend een offerte aan.",
   alternates: {
