@@ -7,7 +7,7 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Klusbedrijf Nijmegen | Renovatie & Verbouwing | M.S. Kracht",
+  title: "Klusbedrijf in Nijmegen",
   description:
     "Klusbedrijf in Nijmegen voor renovatie, verbouwing, schilderwerk, vloeren, badkamerrenovatie, zolderrenovatie en isolatie. Vraag vrijblijvend een offerte aan.",
   alternates: {
