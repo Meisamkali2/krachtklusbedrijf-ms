@@ -67,9 +67,12 @@ export default function CookiesPage() {
             Google. Dit helpt ons te begrijpen welke pagina’s worden bekeken
             en of bezoekers contact opnemen. We meten paginaweergaven,
             succesvolle offerteaanvragen en klikken op telefoon- en
-            WhatsApp-links. De meting bevat de paginapad, het type gebeurtenis,
-            browser- en apparaatgegevens en verwijzingsinformatie. Ingevoerde
-            naam-, e-mail-, telefoon- en berichtvelden worden niet meegestuurd.
+            WhatsApp-links. Afhankelijk van de ingestelde Analytics-functies
+            kunnen ook interacties zoals scrollen, formulierinteracties en
+            uitgaande links worden gemeten. De meting bevat de paginapad, het
+            type gebeurtenis, browser- en apparaatgegevens en
+            verwijzingsinformatie. Ingevoerde naam-, e-mail-, telefoon- en
+            berichtvelden worden niet meegestuurd.
           </p>
           <p>
             De Google Analytics-cookies _ga en _ga_* worden ingesteld met een
