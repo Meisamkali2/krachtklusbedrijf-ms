@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Mail, Phone, MapPin, ArrowRight } from "lucide-react";
+import CookiePreferencesButton from "./CookiePreferencesButton";
 
 export default function Footer() {
   return (
@@ -156,9 +157,16 @@ export default function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="mt-16 border-t border-white/10 pt-8 text-center text-sm text-gray-500">
-          © {new Date().getFullYear()} M.S. Kracht Klusbedrijf. Alle
-          rechten voorbehouden.
+        <div className="mt-16 border-t border-white/10 pt-8 text-center text-sm text-gray-400">
+          <div className="mb-5 flex flex-wrap justify-center gap-x-6 gap-y-3">
+            <Link href="/cookies" className="transition hover:text-white">
+              Privacy en cookies
+            </Link>
+            <CookiePreferencesButton className="transition hover:text-white" />
+          </div>
+          <p className="text-gray-500">
+            © {new Date().getFullYear()} M.S. Kracht Klusbedrijf. Alle rechten voorbehouden.
+          </p>
         </div>
       </div>
     </footer>
