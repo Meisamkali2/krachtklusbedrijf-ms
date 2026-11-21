@@ -22,7 +22,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: project.seoTitle,
+    title: { absolute: project.seoTitle },
     description: project.seoDescription,
     alternates: {
       canonical: `https://www.krachtklusbedrijf-ms.nl/projecten/${project.slug}`,

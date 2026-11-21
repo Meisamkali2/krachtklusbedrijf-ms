@@ -13,6 +13,16 @@ const nextConfig: NextConfig = {
         destination: "/#contact",
         permanent: true,
       },
+      {
+        source: "/nl/schilder-in-de-buurt",
+        destination: "/schilderwerk",
+        permanent: true,
+      },
+      {
+        source: "/nl/projecten",
+        destination: "/projecten",
+        permanent: true,
+      },
     ];
   },
 };

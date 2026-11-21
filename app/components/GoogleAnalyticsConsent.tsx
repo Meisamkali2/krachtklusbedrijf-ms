@@ -21,13 +21,16 @@ function loadGoogleAnalytics() {
   }
 
   window.dataLayer = window.dataLayer || [];
-  window.gtag = (...args: unknown[]) => {
-    window.dataLayer?.push(args);
+  const gtag: NonNullable<Window["gtag"]> = function () {
+    // Match the Arguments object used by Google's gtag.js snippet.
+    // eslint-disable-next-line prefer-rest-params
+    window.dataLayer?.push(arguments);
   };
+  window.gtag = gtag;
 
-  window.gtag("consent", "default", { analytics_storage: "granted" });
-  window.gtag("js", new Date());
-  window.gtag("config", GA_MEASUREMENT_ID, {
+  gtag("consent", "default", { analytics_storage: "granted" });
+  gtag("js", new Date());
+  gtag("config", GA_MEASUREMENT_ID, {
     send_page_view: false,
     cookie_expires: 180 * 24 * 60 * 60,
   });
@@ -149,44 +152,38 @@ export default function GoogleAnalyticsConsent() {
   return (
     <section
       aria-labelledby="cookie-consent-title"
+      aria-describedby="cookie-consent-description"
       aria-live="polite"
-      className="fixed inset-x-4 bottom-4 z-[10000] mx-auto max-w-3xl rounded-2xl border border-slate-200 bg-white p-5 text-slate-900 shadow-2xl sm:inset-x-6 sm:p-6"
+      className="fixed inset-x-3 bottom-[max(0.75rem,env(safe-area-inset-bottom))] z-[10000] mx-auto max-h-[calc(100dvh-2rem)] max-w-lg overflow-y-auto rounded-2xl border border-slate-200 bg-white p-3 text-slate-900 shadow-xl sm:p-4"
     >
-      <h2 id="cookie-consent-title" className="text-lg font-bold">
-        Uw privacykeuze
+      <h2 id="cookie-consent-title" className="text-base font-bold">
+        Analytische cookies
       </h2>
-      <p className="mt-2 text-sm leading-6 text-slate-700">
-        M.S. Kracht Klusbedrijf wil met Google Analytics begrijpen welke
-        pagina’s worden bekeken en of bezoekers contact opnemen. Analytics
-        wordt alleen geladen als u toestemming geeft. We sturen geen naam,
-        e-mailadres, telefoonnummer of bericht uit het offerteformulier naar
-        Analytics. U kunt analytics weigeren en de website blijven gebruiken.
+      <p id="cookie-consent-description" className="mt-1 text-sm leading-5 text-slate-700">
+        Met uw toestemming meten we paginabezoek en contactacties met Google
+        Analytics. U kunt uw keuze wijzigen via ‘Cookievoorkeuren’ onderaan de site.
       </p>
-      <p className="mt-2 text-sm leading-6 text-slate-700">
-        Uw keuze wordt zes maanden op dit apparaat onthouden. U kunt deze later
-        wijzigen via ‘Cookievoorkeuren’ onderaan de website.
-      </p>
-      <div className="mt-4 flex flex-col gap-3 sm:flex-row">
+      <div className="mt-2 grid grid-cols-[repeat(auto-fit,minmax(min(100%,7rem),1fr))] gap-2">
         <button
           type="button"
           onClick={() => saveChoice(false)}
-          className="min-h-12 flex-1 rounded-xl border-2 border-slate-400 bg-white px-5 py-3 text-center font-semibold text-slate-900 transition hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2"
+          className="min-h-11 rounded-lg border border-blue-800 px-2 py-2 text-center text-sm font-semibold text-blue-900 hover:bg-blue-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700"
         >
           Weigeren
         </button>
         <button
           type="button"
           onClick={() => saveChoice(true)}
-          className="min-h-12 flex-1 rounded-xl border-2 border-blue-700 bg-blue-700 px-5 py-3 text-center font-semibold text-white transition hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2"
+          className="min-h-11 rounded-lg border border-blue-800 px-2 py-2 text-center text-sm font-semibold text-blue-900 hover:bg-blue-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700"
         >
           Accepteren
         </button>
       </div>
       <Link
         href="/cookies"
-        className="mt-4 inline-block text-sm font-semibold text-blue-800 underline underline-offset-4 hover:text-blue-950"
+        className="mt-1 inline-flex min-h-6 items-center text-sm text-blue-800 underline underline-offset-4 hover:text-blue-950"
       >
-        Lees privacy- en cookie-informatie
+        Privacy- en cookie-informatie
       </Link>
     </section>
   );

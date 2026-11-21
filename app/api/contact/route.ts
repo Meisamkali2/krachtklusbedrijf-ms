@@ -163,6 +163,7 @@ export async function POST(request: Request) {
      * If the confirmation email fails, the quote request itself
      * has already reached the business inbox.
      */
+    let confirmationAccepted = false;
     try {
       const customerEmailResponse = await fetch(
         "https://api.resend.com/emails",
@@ -274,17 +275,15 @@ export async function POST(request: Request) {
         }
       );
 
-      const customerEmailResult =
-        await customerEmailResponse.json();
-
-      if (!customerEmailResponse.ok) {
+      confirmationAccepted = customerEmailResponse.ok;
+      if (!confirmationAccepted) {
         /*
          * Do not fail the complete request here.
          * The business already received the quote request.
          */
         console.error(
           "Resend customer confirmation error:",
-          customerEmailResult
+          customerEmailResponse.status
         );
       }
     } catch (customerEmailError) {
@@ -301,8 +300,9 @@ export async function POST(request: Request) {
 
     return NextResponse.json({
       success: true,
-      message:
-        "Uw offerteaanvraag is succesvol verzonden. U ontvangt een bevestiging per e-mail.",
+      message: confirmationAccepted
+        ? "Uw offerteaanvraag is ontvangen. U ontvangt een bevestiging per e-mail. Controleer ook uw map Spam / Ongewenste e-mail."
+        : "Uw offerteaanvraag is ontvangen, maar de bevestigingsmail kon niet worden verzonden. U hoeft uw aanvraag niet opnieuw te versturen.",
     });
   } catch (error) {
     console.error("Contact API error:", error);

@@ -24,7 +24,8 @@ const services = [
     title: "Elektra",
     icon: Zap,
     text: "Elektrische installaties, uitbreidingen en werkzaamheden voor renovatie en verbouwing.",
-    href: "/renovatie",
+    href: "/#contact",
+    linkLabel: "Vraag een offerte aan",
   },
   {
     title: "Isolatie",
@@ -85,7 +86,7 @@ export default function Services() {
                 </p>
 
                 <div className="mt-6 flex items-center gap-2 font-semibold text-blue-600">
-                  Bekijk dienst
+                  {service.linkLabel ?? "Bekijk dienst"}
                   <ArrowRight
                     size={18}
                     className="transition-transform duration-300 group-hover:translate-x-1"

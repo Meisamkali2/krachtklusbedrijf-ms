@@ -8,7 +8,7 @@ import {
 import ServiceLayout from "../components/services/ServiceLayout";
 
 export const metadata: Metadata = {
-  title: "Zolderrenovatie in Elst | M.S. Kracht Klusbedrijf",
+  title: "Zolderrenovatie in Elst",
   description:
     "Zolderrenovatie in Elst en omgeving. M.S. Kracht Klusbedrijf helpt met het vernieuwen, isoleren en afwerken van zolders.",
   alternates: {

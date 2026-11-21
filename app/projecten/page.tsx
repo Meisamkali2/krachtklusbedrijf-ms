@@ -4,7 +4,7 @@ import Link from "next/link";
 import { projects } from "../components/data/projects";
 
 export const metadata: Metadata = {
-  title: "Projecten | M.S. Kracht Klusbedrijf",
+  title: "Projecten",
   description:
     "Bekijk uitgevoerde renovatie- en verbouwingsprojecten van M.S. Kracht Klusbedrijf in Elst, Arnhem, Nijmegen en omgeving.",
   alternates: {

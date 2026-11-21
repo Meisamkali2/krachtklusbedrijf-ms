@@ -30,21 +30,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const servicePages = services.map((service) => ({
     url: `${baseUrl}/${service}`,
-    lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.8,
   }));
 
   const cityPages = cities.map((city) => ({
     url: `${baseUrl}/${city}`,
-    lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.8,
   }));
 
   const projectPages = projects.map((project) => ({
     url: `${baseUrl}/projecten/${project.slug}`,
-    lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }));
@@ -52,7 +49,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     ...staticPages.map((page) => ({
       url: page ? `${baseUrl}/${page}` : baseUrl,
-      lastModified: new Date(),
       changeFrequency: "weekly" as const,
       priority: page ? 0.9 : 1,
     })),
