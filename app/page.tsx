@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Header from "./components/Header";
 import Services from "./components/Services";
 import Projecten from "./components/Projecten";
@@ -21,10 +22,14 @@ export default function Home() {
         {/* HERO */}
         <section className="relative min-h-screen">
           {/* Achtergrond afbeelding */}
-          <img
+          <Image
             src="/hero.jpg"
             alt="M.S. Kracht Klusbedrijf in Elst"
-            className="absolute inset-0 h-full w-full object-cover"
+            fill
+            sizes="100vw"
+            loading="eager"
+            fetchPriority="high"
+            className="object-cover"
           />
 
           {/* Blauwe overlay */}

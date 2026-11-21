@@ -45,7 +45,7 @@ export default function Contact() {
 
       const result = await response.json();
 
-      if (!response.ok) {
+      if (!response.ok || result.success !== true) {
         setStatus(
           result.message ||
             "Er is iets misgegaan. Probeer het opnieuw."
@@ -338,11 +338,6 @@ export default function Contact() {
 
                       <p className="mt-3 leading-7">{status}</p>
 
-                      <p className="mt-4 text-sm leading-6 text-green-200">
-                        📩 Controleer ook uw map{" "}
-                        <strong>Spam / Ongewenste e-mail</strong> als u
-                        de bevestigingsmail niet direct in uw inbox ziet.
-                      </p>
                     </>
                   ) : (
                     <p>{status}</p>

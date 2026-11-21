@@ -34,13 +34,11 @@ export function trackAnalyticsEvent(
   eventName: string,
   parameters: Record<string, string | number | boolean> = {}
 ) {
-  if (
-    typeof window === "undefined" ||
-    readAnalyticsConsent() !== "accepted" ||
-    !window.gtag
-  ) {
-    return;
+  try {
+    if (readAnalyticsConsent() === "accepted") {
+      window.gtag?.("event", eventName, parameters);
+    }
+  } catch {
+    // Analytics or browser storage failures must not interrupt the form.
   }
-
-  window.gtag("event", eventName, parameters);
 }
