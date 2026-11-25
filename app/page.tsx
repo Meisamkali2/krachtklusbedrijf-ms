@@ -20,7 +20,7 @@ export default function Home() {
 
       <main>
         {/* HERO */}
-        <section className="relative min-h-screen">
+        <section className="relative min-h-[85svh] md:min-h-screen">
           {/* Achtergrond afbeelding */}
           <Image
             src="/hero.jpg"
@@ -36,7 +36,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-blue-950/70" />
 
           {/* Hero content */}
-          <div className="relative z-10 flex min-h-screen flex-col items-center justify-center px-6 py-24 text-center text-white">
+          <div className="relative z-10 flex min-h-[85svh] flex-col md:min-h-screen items-center justify-center px-6 py-24 text-center text-white">
             <div className="max-w-5xl">
               <p className="mb-5 font-semibold uppercase tracking-[3px] text-blue-200">
                 M.S. Kracht Klusbedrijf · Elst
@@ -46,10 +46,9 @@ export default function Home() {
                 Klusbedrijf in Elst voor renovatie en verbouwing
               </h1>
 
-              <p className="mx-auto mt-7 max-w-3xl text-lg leading-8 text-blue-50 md:text-2xl md:leading-10">
-                M.S. Kracht Klusbedrijf helpt particulieren met renovatie,
-                schilderwerk, vloeren, badkamers, isolatie en zolderrenovatie
-                in Elst en omliggende plaatsen.
+              <p className="mx-auto mt-5 max-w-3xl text-base leading-7 text-blue-50 md:text-2xl md:leading-10">
+                Van badkamerrenovatie en schilderwerk tot vloeren en zolderrenovatie.
+                Vertel ons wat u wilt laten uitvoeren in Elst en omgeving en vraag vrijblijvend een offerte aan.
               </p>
 
               <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
@@ -57,7 +56,7 @@ export default function Home() {
                   href="#contact"
                   className="rounded-xl bg-blue-600 px-8 py-4 text-lg font-bold transition hover:scale-105 hover:bg-blue-700"
                 >
-                  Vraag vrijblijvend een offerte aan
+                  Vraag gratis een offerte aan
                 </a>
 
                 <a
@@ -67,6 +66,8 @@ export default function Home() {
                   Bel direct
                 </a>
               </div>
+
+              <p className="mt-4 text-sm text-blue-100">Vrijblijvend · Persoonlijk contact · Duidelijke afspraken</p>
 
               {/* Trust */}
               <div className="mx-auto mt-10 flex max-w-2xl flex-col items-center justify-center gap-3 rounded-2xl border border-white/20 bg-black/20 px-6 py-5 backdrop-blur-sm sm:flex-row sm:gap-6">

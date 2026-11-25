@@ -78,11 +78,11 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="bg-gradient-to-b from-slate-900 to-slate-950 py-24 text-white"
+      className="scroll-mt-24 bg-gradient-to-b from-slate-900 to-slate-950 py-24 text-white"
     >
       <div className="mx-auto max-w-7xl px-6">
         {/* HEADER */}
-        <div className="mb-20 text-center">
+        <div className="mb-10 text-center md:mb-16">
           <span className="rounded-full bg-blue-600/20 px-5 py-2 text-sm font-semibold text-blue-300">
             GRATIS OFFERTE
           </span>
@@ -99,7 +99,7 @@ export default function Contact() {
 
         <div className="grid gap-14 lg:grid-cols-2">
           {/* LEFT */}
-          <div className="space-y-8">
+          <div className="order-2 space-y-8 lg:order-1">
             {/* PHONE */}
             <div className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur">
               <a
@@ -214,7 +214,7 @@ export default function Contact() {
           </div>
 
           {/* RIGHT - FORM */}
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-8 shadow-xl backdrop-blur md:p-10">
+          <div className="order-1 rounded-3xl border border-white/10 bg-white/5 p-5 shadow-xl backdrop-blur sm:p-8 lg:order-2 md:p-10">
             <div className="mb-8">
               <h3 className="text-2xl font-bold">
                 Vertel ons over uw project
@@ -302,7 +302,7 @@ export default function Contact() {
                 <textarea
                   id="contact-message"
                   name="message"
-                  rows={6}
+                  rows={4}
                   placeholder="Bijvoorbeeld: Ik wil mijn badkamer renoveren in Elst..."
                   required
                   className="w-full resize-y rounded-xl border border-slate-700 bg-slate-800 p-4 text-white placeholder:text-slate-400 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
@@ -317,7 +317,7 @@ export default function Contact() {
               >
                 {loading
                   ? "Aanvraag verzenden..."
-                  : "Vraag vrijblijvend een offerte aan"}
+                  : "Verstuur mijn offerteaanvraag"}
               </button>
 
               {/* STATUS */}
